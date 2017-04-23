@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+	<h2>Input Document</h2>
+	<hr>
+	<div class="col-md-5">
+	<form action="{{ request.path }}" method="post">
+		<div class="form-group">
+	  		<label for="usr">Nim:</label>
+	  		<input name ="nim" type="text" class="form-control" id="usr">
+		</div>
+		<div class="form-group">
+	  		<label for="pwd">Nama:</label>
+	  		<input name ="nama"  type="text" class="form-control" id="pwd">
+		</div>
+		<div class="form-group">
+	  		<label for="pwd">Angkaran : </label>
+	  		<input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd">
+		</div>
+		<div class="form-group">
+	  		<label for="pwd">Tahun Lulus: </label>
+	  		<input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd">
+		</div>
+		<div class="form-group">
+	  		<label for="sel1">Jurusan</label>
+	  		<select name="jurusan" class="form-control" id="sel1">
+	    		<option >Teknik Informatika</option>
+	    		<option >Sistem Informasi</option>
+	    		<option >Teknik Komputer</option>
+	    		<option >Management Informasi</option>
+	    		<option >Komputer Akutansi</option>
+	  		</select>
+		</div>
+		<div class="form-group">
+	  		<label for="pwd">Judul Sekripsi:</label>
+	  		<input name ="judul"  type="text" class="form-control" id="pwd">
+		</div>
+
+		<div class="form-group">
+	  		<label for="pwd">Kata Kunci:</label>
+	  		<input name ="kunci"  type="text" class="form-control" id="pwd">
+		</div>
+		<div class="form-group">
+	  		<label for="comment">Intisari:</label>
+	  		<textarea name ="Isari"  class="form-control" rows="5" id="comment"></textarea>
+		</div>
+		<div class="form-group">
+	  		<label for="comment">Pembimbing:</label>
+	  		<input name ="PBimbing"  type="text" class="form-control" id="pwd">
+		</div>
+		<div class="form-group">
+	  		<label for="pwd">Password:</label>
+	  		<input name ="pas"  type="text" class="form-control" id="pwd">
+		</div>
+		<div class="form-group">
+	  		<label for="pwd">Upload File:</label>
+	  		<input id="input-1" name="file" type="file" class="file">
+		</div>
+		<button type="submit" class="btn btn-default">Simpan</button>
+	</form>
+	<br>
+</div>	
+{% endblock %}

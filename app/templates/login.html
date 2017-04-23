@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+    <div class="container">
+        <div class="row text-center pad-top ">
+            <div class="col-md-12">
+                <h3>Login Sistem Arsip Dokument Skripsi dan Tugas Akhir STMIK AKAKOM</h3>
+            <hr>
+            </div>
+        </div>
+        <div class="row  pad-top">
+
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 ">
+
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title panel-title-adjust">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <i class="fa fa-plus"></i>Login Mahasiswa
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                    <form>
+                                      <div class="input-group">
+                                        <span class="input-group-addon">Username</span>
+                                        <input id="msg" type="text" class="form-control" name="username" placeholder="Masukan Username Andra">
+                                      </div>
+                                      <br>
+                                      <div class="input-group">
+                                        <span class="input-group-addon">Password</span>
+                                        <input id="msg" type="password" class="form-control" name="password" placeholder="Masukan Password Anda">
+                                      </div>
+                                      <br>
+                                      <button type="submit" class="btn btn-default">Login</button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title panel-title-adjust">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <i class="fa fa-plus"></i>Login Admin
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                 <form action="{{ url_for('admin_login') }}" method="POST">
+                                      <div class="input-group">
+                                        <span class="input-group-addon">Username</span>
+                                        <input id="msg" type="text" class="form-control" name="username" placeholder="Masukan Username Anda">
+                                      </div>
+                                      <br>
+                                      <div class="input-group">
+                                        <span class="input-group-addon">Password</span>
+                                        <input id="msg" type="password" class="form-control" name="password" placeholder="Masukan Password Anda">
+                                      </div>
+                                      <br>
+                                      <button type="submit" class="btn btn-default">Login</button>
+                                    </form>   
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58126461-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+{% endblock %}

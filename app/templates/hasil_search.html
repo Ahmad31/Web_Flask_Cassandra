@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+	{% include "search_document.html" %}
+	<hr>
+	{% for tampil in cari_judul %}
+	<div class="col-md-8">
+    	<h3>Judul : <a href="#">  {{ tampil }} </a></h3>
+    	<hr>
+ 	</div>
+   	{% endfor %}
+{% endblock %}

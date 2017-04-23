@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+	<hr>
+	{% for doc in detil %}
+	<div>
+    	<h3>Judul : {{ doc.judul }} </a></h3>
+    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
+    	<hr>
+ 	</div>
+
+   	{% endfor %}
+{% endblock %}
