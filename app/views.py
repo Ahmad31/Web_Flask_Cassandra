@@ -24,7 +24,7 @@ def index():
 @app.route('/search', methods=['GET','POST'])
 def search():
 	""" cari, query cari """
-	cari_judul = sesi.execute(" SELECT judul FROM document WHERE judul LIKE  %s ", ["cassandra"])
+	cari_judul = sesi.execute(" SELECT judul FROM document WHERE judul LIKE  '%{}%'".format(request.form['cari']))
 	hasil = Document.objects.filter(judul=cari_judul)
 	return render_template("hasil_search.html", cari_judul=cari_judul)
 
