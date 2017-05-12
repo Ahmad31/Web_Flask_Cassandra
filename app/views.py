@@ -1,7 +1,6 @@
 from app import app, login_manager 
-from flask import Flask, abort, render_template, session, redirect, url_for, escape, request, flash, g
-from flask_login import login_required, login_user, logout_user, current_user
-from .models import db, User, Document
+from flask import Flask, abort, render_template, session, redirect, url_for, escape, request, flash, g, Response
+from .models import db, User_admin, Document
 from .forms import LoginAdminForm
 from cassandra.cluster import Cluster
 
@@ -18,15 +17,25 @@ def detil_doc(nim, judul):
 @app.route('/')
 @app.route('/index')
 def index():
+	return render_template("index.html")
+
+@app.route('/form_search')
+def form_search():
 	data = Document.objects().all()
-	return render_template("index.html", data=data)
+	return render_template("search_document.html", data=data)
+
+
+@app.route('/all_data')
+def all_data():
+	data = Document.objects().all()
+	return render_template("tampil_all_data.html", data=data)
 
 @app.route('/search', methods=['GET','POST'])
 def search():
 	""" cari, query cari """
-	cari_judul = sesi.execute(" SELECT judul FROM document WHERE judul LIKE  %s ", ["cassandra"])
-	hasil = Document.objects.filter(judul=cari_judul)
-	return render_template("hasil_search.html", cari_judul=cari_judul)
+	cari_judul = sesi.execute(" SELECT * FROM document WHERE judul LIKE  '%{}%'".format(request.form['cari']))
+	info = request.form['cari']
+	return render_template("hasil_search.html", cari_judul=cari_judul, info=info)
 
 
 @app.route('/admin')
@@ -38,13 +47,19 @@ def admin():
 		""" ini juga koment """
     	return render_template("index.html")
 
-@app.route('/login', methods=['POST'])
-def admin_login():
+@app.route('/login')
+def login():
+	return render_template("login.html")
+
+
+@app.route('/login_admin', methods=['POST'])
+def login_admin():
     if request.form['password'] == 'password' and request.form['username'] == 'admin':
         session['logged_in'] = True
     else:
         flash('wrong password!')
-    return index()
+    return admin()
+
 
 
 @app.route("/logout")
@@ -61,7 +76,7 @@ def add():
 
 	if request.method == 'POST':
 		if not request.form['nim'] or not request.form['judul']:
-			flash('Masukkan NIM dan Jurusan')
+			error = "Masukkan Data dengan komplit dan sesuai!"
 		else:
 			doc = Document( nim=request.form['nim'],
 							nama_mhs=request.form['nama'],
@@ -73,7 +88,12 @@ def add():
 							intisari=request.form['Isari'],
 							pembimbing=request.form['PBimbing'],
 							password=request.form['pas'],
-							file_doc=request.form['file'])
+							file1=request.form['file_doc1'],
+							file2=request.form['file_doc2'],
+							file3=request.form['file_doc3'],
+							file4=request.form['file_doc4'],
+							file5=request.form['file_doc5']
+							)
 			doc.save()
 
 			flash('Sukses menambah data')
