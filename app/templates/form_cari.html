@@ -1,0 +1,20 @@
+<div class="alert alert-info">
+  <strong>Cari Dokumen</strong> <p>Adalah menu untuk menjadi dokumen skripsi/tugas akhir berdasarkan judul dokument.</p>
+</div>
+<div class="well well-lg">
+    <form action="{{ url_for('search') }}" method="POST">
+      <div class="row">
+        <div class=".col-sm-6">
+          <div class="input-group">
+            <input name="cari" type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </form>
+  </div>
+  

@@ -21,8 +21,8 @@ class Document(db.Model):
     def __repr__(self):
         return '<Document %r>' % (self.nim, self.nama_mhs, self.angkatan, self.tahun, self.prodi, self.judul, self.kata_kunci, self.intisari, self.pembimbing, self.password, self.file_doc)
 
-class User(db.Model):
-    __table_name__ = "user"
+class User_admin(db.Model):
+    __table_name__ = "user_admin"
     username = db.columns.Text(primary_key=True)
     password = db.columns.Text(primary_key=True)
 
@@ -36,7 +36,7 @@ class User(db.Model):
         return unicode(self.username)
 
     def __repr__(self):
-        return '<User %r>' % (self.username, self.password)
+        return '<User_admin %r>' % (self.username, self.password)
 
 
 

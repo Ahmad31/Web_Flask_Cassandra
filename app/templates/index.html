@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-	{% include "search_document.html" %}
+	<br>
+	<div class="col-md-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Welcome</div>
+  		<div class="panel-body">Selamat Datang
+  		<p>Sistem Arsip merupakan sistem untuk melakukan unggah secara mandiri dokumen skripsi/tugas akhir bagi setiap mahasiswa sebagai syarat wisuda</p>
+  		</div>
+	</div>
+	</div>
+	<div class="col-md-3"></div>
+	<div class="col-md-3 ">
+	<div class="panel panel-info">
+		<div class="panel-heading">Skripsi dan Tugas Akhir</div>
+  		<div class="panel-body">
+  			<ul>
+  				<li><a href="#">Teknik Informatika</a></li>
+  				<li><a href="#">Sistem Informasi</a></li>
+  				<li><a href="#">Teknik Komputer</a></li>
+  				<li><a href="#">Management Informasi</a></li>
+  				<li><a href="#">Komputer Akuntansi</a></li>
+  			</ul>
+  		</div>
+	</div>
+	</div>
 	<hr>
-	{% for doc in data %}
-	<div class="col-md-8">
-    	<h3>Judul : <a href="{{ url_for('detil_doc', nim=doc.nim, judul=doc.judul) }}">  {{ doc.judul }} </a></h3>
-    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
-    	<hr>
- 	</div>
-   	{% endfor %}
 {% endblock %}
