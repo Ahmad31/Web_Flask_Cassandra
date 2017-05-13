@@ -30,8 +30,7 @@ def search():
 	cari_judul = sesi.execute(" SELECT * FROM document WHERE judul LIKE  '%{}%'".format(request.form['cari']))
 	info = request.form['cari']
 	return render_template("hasil_search.html", cari_judul=cari_judul, info=info)
-
-
+	
 @app.route('/admin')
 def admin():
 	if not session.get('logged_in'):

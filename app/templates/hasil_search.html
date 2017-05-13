@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-	{% include "search_document.html" %}
+	{% include "form_cari.html" %}
 	<hr>
+	<h3>~ Hasil pencarian " {{ info }} "</h3>
 	{% for tampil in cari_judul %}
 	<h3>Hasil pencarian ~ " {{ info }} "</h3>
 	<div class="col-md-8">
-    	<h3>Judul : <a href="#">  {{ tampil.judul }} </a></h3>
+    	<h3> Judul : <a href="{{ url_for('detil_doc', nim=tampil.nim, judul=tampil.judul) }}">  {{ tampil.judul }} </a></h3>
     	<hr>
  	</div>
    	{% endfor %}

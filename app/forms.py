@@ -1,5 +1,4 @@
 from wtforms.validators import DataRequired, Length
-from models import db, User
 from wtforms import Form, TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
 
 class InputData(Form):
