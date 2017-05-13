@@ -31,15 +31,16 @@
               <div class="container">
                     <div class="container-fluid">
                       <div class="navbar-header">
-                          <a class="navbar-brand" href="/index">Arsip</a>
+                          <a class="navbar-brand" href="/index">Home</a>
                             <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
                             {% if session['logged_in'] %}
-                            <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Buat User</a></li>
-                            <li><a href="{{ url_for('add') }}"><span class="glyphicon glyphicon-file"></span> Input Skripsi</a></li>
+                            <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Data User</a></li>
+                            <li><a href="{{ url_for('add') }}"><span class="glyphicon glyphicon-file"></span>Data Dokumen</a></li>
                             <li><a href="{{ 'logout' }}"><span class="glyphicon glyphicon-log-out"> 
                             </span> Logout</a></li>
                             {% else %}
-                              <li><a href="{{ url_for('admin') }}"><span class="glyphicon glyphicon-log-in"> 
+                              <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"> 
                             </span> Login</a></li>
                             {% endif %}           
                         </ul>
@@ -53,10 +54,13 @@
     <div class="container">
       {% block content %} {% endblock %}
     </div>
+    <br>
+    <br>
+    <br>
     <div class="col-md-12">
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">Copy right SISTEM Arsip Document STMIK AKAKOM</p>
+        <p class="text-muted">SISTEM Arsip Document STMIK AKAKOM</p>
       </div>
     </footer>
     </div>

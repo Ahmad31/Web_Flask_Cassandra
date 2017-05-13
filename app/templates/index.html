@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-	{% include "search_document.html" %}
-	<hr>
-	{% for doc in data %}
-	<div class="col-md-8">
-    	<h3>Judul : <a href="{{ url_for('detil_doc', nim=doc.nim, judul=doc.judul) }}">  {{ doc.judul }} </a></h3>
-    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
-    	<hr>
- 	</div>
-   	{% endfor %}
+	<br>
+	<br>
+	<div class="panel-group">
+	<div class="col-sm-6">
+	    <div class="panel panel-primary">
+	      <div class="panel-heading">Selamat Datang</div>
+	      <div class="panel-body">Arsip dokumen merupakan aplikasi yang ditujukan untuk memudahkan proses Penyerahan Karya Tulis Akhir (Skripsi/ Tugas Akhir) AKAKOM sebagai salah satu syarat untuk mengikuti wisuda. </div>
+	    </div>
+    </div>
+
+    <div class="col-sm-3 col-md-offset-2">
+	    <div class="panel panel-primary">
+	      <div class="panel-heading">Jurusan</div>
+	      <div class="panel-body">
+	      	<ol>
+	      		<li>Teknik Informatika(S1)</li>
+	      		<li>Sistem Informasi(S1)</li>
+	      		<li>Teknik Komputer(D3)</li>
+	      		<li>Manajemen Informatika(D3)</li>
+	      		<li>Komputer Akuntansi(D3)</li>
+	      	</ol>
+	      </div>
+	    </div>
+    </div>
+    
+</div>
 {% endblock %}

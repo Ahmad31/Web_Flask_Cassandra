@@ -1,6 +1,6 @@
 from app import app, login_manager 
 from flask import Flask, abort, render_template, session, redirect, url_for, escape, request, flash, g, Response
-from .models import db, User_admin, Document
+from .models import db, Document
 from .forms import LoginAdminForm
 from cassandra.cluster import Cluster
 
@@ -22,13 +22,7 @@ def index():
 @app.route('/form_search')
 def form_search():
 	data = Document.objects().all()
-	return render_template("search_document.html", data=data)
-
-
-@app.route('/all_data')
-def all_data():
-	data = Document.objects().all()
-	return render_template("tampil_all_data.html", data=data)
+	return render_template("form_search.html", data=data)
 
 @app.route('/search', methods=['GET','POST'])
 def search():
@@ -47,10 +41,6 @@ def admin():
 		""" ini juga koment """
     	return render_template("index.html")
 
-@app.route('/login')
-def login():
-	return render_template("login.html")
-
 
 @app.route('/login_admin', methods=['POST'])
 def login_admin():
@@ -67,9 +57,6 @@ def logout():
     session['logged_in'] = False
     return admin()
 
-@login_manager.user_loader
-def load_login(username):
-	return User.get(text(username))
 
 @app.route('/add', methods = ['GET', 'POST'])
 def add():
