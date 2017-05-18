@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+	{% include "search_document.html" %}
+	<hr>
+	{% for doc in data %}
+	<div class="col-md-8">
+    	<h3>Judul : <a href="{{ url_for('detil_doc', nim=doc.nim, judul=doc.judul) }}">  {{ doc.judul }} </a></h3>
+    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
+    	<hr>
+ 	</div>
+   	{% endfor %}
+{% endblock %}

@@ -1,12 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-	<hr>
 	{% for doc in detil %}
-	<div>
-    	<h3>Judul : {{ doc.judul }} </a></h3>
-    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
-    	<hr>
- 	</div>
-
+	<h4>
+   	<div class="col-sm-12" >
+    	<table class="table table-hover">
+		    <tbody>
+		      <tr>
+		        <td class="col-sm-2">Judul</td>
+		        <td>:</td>
+		        <td>{{ doc.judul }}</td>
+		      </tr>
+		      <tr>
+		        <td class="col-sm-2">Intisari</td>
+		        <td>:</td>
+		        <td>{{ doc.intisari }}</td>
+		      </tr>
+		      <tr>
+		        <td class="col-sm-2">Tahun</td>
+		        <td>:</td>
+		        <td>{{ doc.tahun}}</td>
+		      </tr>
+		      <tr>
+		        <td class="col-sm-2">Nama Penulis</td>
+		        <td>:</td>
+		        <td>{{ doc.nama_mhs }}</td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+		</div>
+	</h4>
    	{% endfor %}
 {% endblock %}
