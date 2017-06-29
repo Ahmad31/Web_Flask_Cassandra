@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="panel panel-primary">
+  <div class="panel-heading">Ubah Data</div>
+      <div class="panel-body">
+
+
+  <form action="{{ url_for('respon_edit') }}" method="post">
+    {% for edit_doc in view_doc %}
+    <div class="form-group">
+      Nim 
+      <input type="text" name="nim_mhs" class="form-control" value="{{ edit_doc.nim }}">
+    </div>
+    <div class="form-group">
+      Nama
+      <input type="text" name="nama_m" class="form-control" value="{{ edit_doc.nama_mhs }}">
+    </div>
+
+    <div class="form-group">
+            <p>Angkaran : </p>
+            <select name="angkatan_mhs" class="form-control">
+                    {% for date in date1 %}
+                    <option >{{ date }}</option>
+                     {% endfor %}
+              </select>
+        </div>
+        <div class="form-group">
+            <p>Tahun Lulus: </p>
+            <select name="tlulus_mhs" class="form-control" >
+                    {% for tahun in date2 %}
+                    <option >{{ tahun }}</option>
+                     {% endfor %}
+          </select>
+    </div>
+
+    <div class="form-group">
+      Jurusan : 
+      <label>{{ edit_doc.prodi }}</label>
+      
+    </div>
+
+    <div class="form-group">
+        Judul Sekripsi:
+        <input name ="judul_doc"  type="text" class="form-control" id="pwd" value="{{ edit_doc.judul }}">
+    </div>
+
+    <div class="form-group">
+      Kata Kunci:
+      <input name ="kunci_kata"  type="text" class="form-control" value="{{ edit_doc.kata_kunci }}">
+    </div>
+
+    <div class="form-group">
+      Intisari
+        <textarea name ="intisari_doc"  class="form-control" rows="5" id="comment">{{ edit_doc.intisari }}"</textarea>
+    </div>
+
+    <div class="form-group">
+      Pembimbing
+        <input name ="pembimbing_mhs"  type="text" class="form-control" value="{{ edit_doc.pembimbing }}">
+    </div>
+
+    <div class="form-group">
+            File<br>
+            <a href="">{{ edit_doc.file1 }}</br></a>
+            <a href="">{{ edit_doc.file2 }}</br></a>
+            <a href="">{{ edit_doc.file3 }}<br></a>
+            <a href="">{{ edit_doc.file4 }}</br></a>
+            <a href="">{{ edit_doc.file5 }}</br></a>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ubah</button>
+    {% endfor %}
+  </form>
+
+    </div>
+  </div>
+</div>
+
+</main>             
+{% endblock %}

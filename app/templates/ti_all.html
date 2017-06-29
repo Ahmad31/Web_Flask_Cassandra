@@ -1,0 +1,12 @@
+{% block content %}
+data TI
+{% for doc in data %}
+	<div class="row">
+	<div class="col-md-12">
+    	<h3>Judul : <a href="{{ url_for('detil_doc', nim=doc.nim, judul=doc.judul) }}">  {{ doc.judul }} </a></h3>
+    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
+    	<hr>
+ 	</div>
+ 	</div>
+{% endfor %}
+{% endblock %}

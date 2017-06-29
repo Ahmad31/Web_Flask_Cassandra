@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+	<div class="alert alert-info">
+	  <strong>Cari Dokumen</strong> <p>Adalah menu untuk menjadi dokumen skripsi/tugas akhir berdasarkan judul dokument.</p>
+	</div>
+	{% include "search_document.html" %}
+	<hr>
+	{% for doc in data %}
+	<div class="row">
+	<div class="col-md-12">
+    	<h3><a href="{{ url_for('detil_doc', nim=doc.nim, judul=doc.judul) }}">  {{ doc.judul }} </a></h3>
+    	<p>Prodi : {{ doc.prodi }} | Tahun : {{ doc.tahun }} </p>
+    	<hr>
+ 	</div>
+ 	</div>
+   	{% endfor %}
+</main>   	
+{% endblock %}

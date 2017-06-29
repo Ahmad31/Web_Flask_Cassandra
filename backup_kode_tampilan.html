@@ -1,0 +1,317 @@
+<main>
+	<div class="col-md-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Welcome</div>
+  		<div class="panel-body">Selamat Datang
+  		<p>Sistem Arsip merupakan sistem untuk melakukan unggah secara mandiri dokumen skripsi/tugas akhir bagi setiap mahasiswa sebagai syarat wisuda</p>
+  		</div>
+	</div>
+	</div>
+	<div class="col-md-3"></div>
+	<div class="col-md-3 ">
+	<div class="panel panel-info">
+		<div class="panel-heading">Skripsi dan Tugas Akhir</div>
+  		<div class="panel-body">
+  			<ul>
+  				<li><a href="#">Teknik Informatika</a></li>
+  				<li><a href="#">Sistem Informasi</a></li>
+  				<li><a href="#">Teknik Komputer</a></li>
+  				<li><a href="#">Management Informasi</a></li>
+  				<li><a href="#">Komputer Akuntansi</a></li>
+  			</ul>
+  		</div>
+	</div>
+	</div>
+	<hr>
+	</main>
+
+
+	<div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-primary"">
+		    <div class="panel-heading">Panel Heading</div>
+		    <div class="panel-body">We are a fairly small, flexible design studio that designs for print and web. We work flexibly with clients to fulfil their design needs. Whether you need to create a brand from scratch, including marketing materials and a beautiful and functional website or whether you are looking for a design refresh we are confident you will be pleased with the results.</div>
+		</div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+        <div class="panel panel-default">
+		    <div class="panel-heading">Panel Heading</div>
+		    <div class="panel-body">We are a fairly small, flexible design studio that designs for print and web. We work flexibly with clients to fulfil their design needs. Whether you need to create a brand from scratch, including marketing materials and a beautiful and functional website or whether you are looking for a design refresh we are confident you will be pleased with the results.</div>
+		</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+        </div>
+	</div>
+
+
+
+	<div class="panel panel-primary">
+  		<div class="panel-body">
+	  		
+			<form action="{{ request.path }}" method="post">
+			<div class="col-md-5 col-sm-5 col-xs-12">
+				<div class="form-group">
+			  		<label for="usr">Nim:</label>
+			  		<input name ="nim" type="text" class="form-control" id="usr">
+				</div>
+				<div class="form-group">
+			  		<label for="pwd">Nama:</label>
+			  		<input name ="nama"  type="text" class="form-control" id="pwd">
+				</div>
+				<div class="form-group">
+			  		<label for="pwd">Angkaran : </label>
+			  		<input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd">
+				</div>
+				<div class="form-group">
+			  		<label for="pwd">Tahun Lulus: </label>
+			  		<input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd">
+				</div>
+				<div class="form-group">
+			  		<label for="sel1">Jurusan</label>
+			  		<select name="jurusan" class="form-control" id="sel1">
+			    		<option >Teknik Informatika</option>
+			    		<option >Sistem Informasi</option>
+			    		<option >Teknik Komputer</option>
+			    		<option >Management Informasi</option>
+			    		<option >Komputer Akutansi</option>
+			  		</select>
+				</div>
+
+				
+				<div class="form-group">
+			  		<label for="pwd">Judul Sekripsi:</label>
+			  		<input name ="judul"  type="text" class="form-control" id="pwd">
+				</div>
+
+				<div class="form-group">
+			  		<label for="pwd">Kata Kunci:</label>
+			  		<input name ="kunci"  type="text" class="form-control" id="pwd">
+				</div>
+
+				</div>
+				<div class="col-md-5 col-sm-5 col-xs-12">
+
+				<div class="form-group">
+			  		<label for="comment">Intisari:</label>
+			  		<textarea name ="Isari"  class="form-control" rows="5" id="comment"></textarea>
+				</div>
+				<div class="form-group">
+			  		<label for="comment">Pembimbing:</label>
+			  		<input name ="PBimbing"  type="text" class="form-control" id="pwd">
+				</div>
+				<div class="form-group">
+			  		<label for="pwd">Password:</label>
+			  		<input name ="pas"  type="text" class="form-control" id="pwd">
+				</div>
+				<div class="form-group">
+			  		<label for="pwd">Upload File:</label><br>
+			  		BAB I : <input id="input-1" name="file_doc1" type="file" class="file">
+
+			  		BAB II : <input id="input-1" name="file_doc2" type="file" class="file">
+
+			  		BAB III : <input id="input-1" name="file_doc3" type="file" class="file">
+
+			  		BAB IV : <input id="input-1" name="file_doc4" type="file" class="file">
+
+			  		BAB V : <input id="input-1" name="file_doc5" type="file" class="file">
+
+				</div>
+				<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+			<br>
+
+ 		</div>
+	</div>
+
+
+
+	{% extends "base.html" %}
+{% block content %}
+
+       {% for edit_doc in view_doc %}
+        <div role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading">Ubah Data</h4>
+                    <div style="text-align: right;">
+                    <span ><a href="{{ url_for('data_doc') }}">Kembali</a></span>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                  <div class="form-group">
+                <input class="form-control " type="text" value="{{ edit_doc.nama_mhs }}">
+                </div>
+                <div class="form-group">
+                
+                <input class="form-control " type="text" value="{{ edit_doc.nim  }}">
+                </div>
+                <div class="form-group">
+                <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+                </div>
+              </div>
+              
+                  <div class="modal-footer ">
+                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>Perbarui</button>
+              </div>
+              
+                </div>
+            <!-- /.modal-content --> 
+          </div>
+              <!-- /.modal-dialog --> 
+            </div>
+            {% endfor %}
+{% endblock %}
+
+
+<br>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="panel panel-primary">
+              <div class="panel-heading">Ubah Data</div>
+              <div class="panel-body">
+                
+              <form action="{{ url_for('respon_edit') }}" method="post">
+              <div class="col-md-5 col-sm-5 col-xs-12">
+              {% for edit_doc in view_doc %}
+                <div class="form-group">
+                    <p>Nim:</p>
+                    <input name ="nim" type="text" class="form-control" id="usr" value="{{ edit_doc.nim }}">
+                </div>
+                <div class="form-group">
+                    <p>Nama:</p>
+                    <input name ="nama"  type="text" class="form-control" id="pwd" value="{{ edit_doc.nama_mhs }}">
+                </div>
+                <div class="form-group">
+                    <p>Angkaran : </p>
+                    <input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd" value="{{ edit_doc.angkatan }}">
+                </div>
+                <div class="form-group">
+                    <p>Tahun Lulus: </p>
+                    <input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd" value="{{ edit_doc.tahun }}">
+                </div>
+                <div class="form-group">
+                    <p>Jurusan</p>
+                    <select name="jurusan" class="form-control" id="sel1">
+                      <option >Teknik Informatika</option>
+                      <option >Sistem Informasi</option>
+                      <option >Teknik Komputer</option>
+                      <option >Management Informasi</option>
+                      <option >Komputer Akutansi</option>
+                    </select>
+                </div>
+
+                
+                <div class="form-group">
+                    <p>Judul Sekripsi:</p>
+                    <input name ="judul"  type="text" class="form-control" id="pwd" value="{{ edit_doc.judul }}">
+                </div>
+
+                <div class="form-group">
+                    <p>Kata Kunci:</p>
+                    <input name ="kunci"  type="text" class="form-control" id="pwd" value="{{ edit_doc.kata_kunci }}">
+                </div>
+
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12">
+
+                <div class="form-group">
+                    <p>Intisari:</p>
+                    <textarea name ="Isari"  class="form-control" rows="5" id="comment" > {{ edit_doc.intisari }}</textarea>
+                </div>
+                <div class="form-group">
+                    <p>Pembimbing:</p>
+                    <input name ="PBimbing"  type="text" class="form-control" id="pwd" value="{{ edit_doc.pembimbing }}">
+                </div>
+                <div class="form-group">
+                    <p>Upload File:</p><br>
+                    BAB I : <input id="input-1" name="file_doc1" type="file" class="file">
+
+                    BAB II : <input id="input-1" name="file_doc2" type="file" class="file">
+
+                    BAB III : <input id="input-1" name="file_doc3" type="file" class="file">
+
+                    BAB IV : <input id="input-1" name="file_doc4" type="file" class="file">
+
+                    BAB V : <input id="input-1" name="file_doc5" type="file" class="file">
+
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-warning">Ubah</button>
+                <button type="submit" class="btn btn-primary">Batal</button>
+
+                </div>
+              </form>
+              <br>
+
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+
+        <div class="form-group">
+			  		<p>Angkaran : </p>
+			  		<select name="angkatan" class="form-control">
+			              {% for date in date1 %}
+			              <option >{{ date }}</option>
+			               {% endfor %}
+			        </select>
+				</div>
+				<div class="form-group">
+			  		<p>Tahun Lulus: </p>
+			  		<select name="Tlulus" class="form-control" >
+			              {% for tahun in date2 %}
+			              <option >{{ tahun }}</option>
+			               {% endfor %}
+			    </select>
+		</div>
+
+
+    <div class="form-group">
+      Kata Kunci:
+      <input name ="kunci_kata"  type="text" class="form-control" value="{{ edit_doc.kata_kunci }}">
+    </div>
+
+    <div class="form-group">
+      Intisari
+        <textarea name ="intisari_doc"  class="form-control" rows="5" id="comment">{{ edit_doc.intisari }}"</textarea>
+    </div>
+
+    <div class="form-group">
+      Pembimbing
+        <input name ="pembimbing_mhs"  type="text" class="form-control" value="{{ edit_doc.pembimbing }}">
+    </div>
+
+
+
+    <div class="form-group">
+            <p>Angkaran : </p>
+            <input name ="angkatan_mhs"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2011 )" value="{{ edit_doc.angkatan }} ">
+    </div>
+    <div class="form-group">
+            <p>Tahun Lulus: </p>
+            <input name ="tahun_lulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2013 )" value="{{ edit_doc.tahun }} ">
+    </div>
+
+
+    <div class="form-group">
+            File<br>
+            <a href="">{{ edit_doc.file1 }}</br></a>
+            <a href="">{{ edit_doc.file2 }}</br></a>
+            <a href="">{{ edit_doc.file3 }}<br></a>
+            <a href="">{{ edit_doc.file4 }}</br></a>
+            <a href="">{{ edit_doc.file5 }}</br></a>
+    </div>
+
+
+    <div class="form-group">
+            Jurusan
+            <select name="jurusan_mhs" class="form-control" id="sel1" disabled>
+              <option >{{ edit_doc.prodi }} </option>
+            </select>
+    </div>
+
+    <a href="{{ url_for('respon_delet', nim) }}">

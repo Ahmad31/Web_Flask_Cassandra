@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+  
+  <input id="tab1" type="radio" name="tabs" checked>
+  <label for="tab1">Unggah Dokumen</label>
+    
+  <input id="tab2" type="radio" name="tabs">
+  <label for="tab2">TI(S1) </label>
+    
+  <input id="tab3" type="radio" name="tabs">
+  <label for="tab3">SI(S1)</label>
+    
+  <input id="tab4" type="radio" name="tabs">
+  <label for="tab4">TK(D3)</label>
+
+  <input id="tab5" type="radio" name="tabs">
+  <label for="tab5">MI(D3)</label>
+
+  <input id="tab6" type="radio" name="tabs">
+  <label for="tab6">KA(D3)</label>
+    
+  <section id="content1">
+    {% include "input_data.html"%}
+  </section>
+    
+  <section id="content2">
+  
+    <div class="row">
+            <div class="col-md-12">
+            <h4>Data Skripsi Teknik Informatika</h4>
+            {% for doc in data_ti %}
+            <div class="table-responsive">
+
+                    
+                  <table id="mytable" class="table table-bordred table-striped">
+                       
+                       <thead>
+                       
+                       <th><input type="checkbox" id="checkall" /></th>
+                       <th>Nim</th>
+                        <th>Nama</th>
+                         <th>Pembimbing</th>
+                         <th>Angkatan</th>
+                         <th>Tahun Lulus</th>
+                         <th></th>
+                          <th>Edit</th>
+                          
+                           <th>Delete</th>
+                       </thead>
+        <tbody>
+        
+        <tr>
+        <td><input type="checkbox" class="checkthis" /></td>
+        <td>{{ doc.nim }}</td>
+        <td>{{ doc.nama_mhs }}</td>
+        <td>{{ doc.pembimbing }}</td>
+        <td>{{ doc.angkatan }}</td>
+        <td>{{ doc.tahun }}</td>
+        <td></td>
+
+        <td><a href="{{ url_for('edit_doc', nim=doc.nim) }}">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+        
+        <td><a href="{{ url_for('delete_doc', nim=doc.nim) }}"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+        </a>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+     {% endfor %}
+    
+      </div>
+    </div>
+
+
+  </section>
+    
+  <section id="content3">
+    <div class="row">
+            <div class="col-md-12">
+            <h4>Data Skripsi Sistem Informatika</h4>
+            {% for doc in data_si %}
+            <div class="table-responsive">
+
+                    
+                  <table id="mytable" class="table table-bordred table-striped">
+                       
+                       <thead>
+                       
+                       <th><input type="checkbox" id="checkall" /></th>
+                       <th>Nim</th>
+                        <th>Nama</th>
+                         <th>Pembimbing</th>
+                         <th>Angkatan</th>
+                         <th>Tahun Lulus</th>
+                         <th></th>
+                          <th>Edit</th>
+                          
+                           <th>Delete</th>
+                       </thead>
+        <tbody>
+        
+        <tr>
+        <td><input type="checkbox" class="checkthis" /></td>
+        <td>{{ doc.nim }}</td>
+        <td>{{ doc.nama_mhs }}</td>
+        <td>{{ doc.pembimbing }}</td>
+        <td>{{ doc.angkatan }}</td>
+        <td>{{ doc.tahun }}</td>
+        <td></td>
+
+        <td><a href="{{ url_for('edit_doc', nim=doc.nim) }}">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+        
+        <td><a href="{{ url_for('delete_doc', nim=doc.nim) }}"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+        </a>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+     {% endfor %}
+    
+      </div>
+    </div>
+  </section>
+    
+
+  <section id="content4">
+    <div class="row">
+            <div class="col-md-12">
+            <h4>Data Tugas Akhir Teknik Komputer</h4>
+            {% for doc in data_tk %}
+            <div class="table-responsive">
+
+                    
+                  <table id="mytable" class="table table-bordred table-striped">
+                       
+                       <thead>
+                       
+                       <th><input type="checkbox" id="checkall" /></th>
+                       <th>Nim</th>
+                        <th>Nama</th>
+                         <th>Pembimbing</th>
+                         <th>Angkatan</th>
+                         <th>Tahun Lulus</th>
+                         <th></th>
+                          <th>Edit</th>
+                          
+                           <th>Delete</th>
+                       </thead>
+        <tbody>
+        
+        <tr>
+        <td><input type="checkbox" class="checkthis" /></td>
+        <td>{{ doc.nim }}</td>
+        <td>{{ doc.nama_mhs }}</td>
+        <td>{{ doc.pembimbing }}</td>
+        <td>{{ doc.angkatan }}</td>
+        <td>{{ doc.tahun }}</td>
+        <td></td>
+
+        <td><a href="{{ url_for('edit_doc', nim=doc.nim) }}">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+        
+        <td><a href="{{ url_for('delete_doc', nim=doc.nim) }}"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+        </a>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+     {% endfor %}
+    
+      </div>
+    </div>
+  </section>
+  
+  <section id="content5">
+    <div class="row">
+            <div class="col-md-12">
+            <h4>Data Tugas Akhir Management Informatika</h4>
+            {% for doc in data_mi %}
+            <div class="table-responsive">
+
+                    
+                  <table id="mytable" class="table table-bordred table-striped">
+                       
+                       <thead>
+                       
+                       <th><input type="checkbox" id="checkall" /></th>
+                       <th>Nim</th>
+                        <th>Nama</th>
+                         <th>Pembimbing</th>
+                         <th>Angkatan</th>
+                         <th>Tahun Lulus</th>
+                         <th></th>
+                          <th>Edit</th>
+                          
+                           <th>Delete</th>
+                       </thead>
+        <tbody>
+        
+        <tr>
+        <td><input type="checkbox" class="checkthis" /></td>
+        <td>{{ doc.nim }}</td>
+        <td>{{ doc.nama_mhs }}</td>
+        <td>{{ doc.pembimbing }}</td>
+        <td>{{ doc.angkatan }}</td>
+        <td>{{ doc.tahun }}</td>
+        <td></td>
+
+        <td><a href="{{ url_for('edit_doc', nim=doc.nim) }}">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+        
+        <td><a href="{{ url_for('delete_doc', nim=doc.nim) }}"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+        </a>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+     {% endfor %}
+    
+      </div>
+    </div>
+  </section>
+
+  <section id="content6">
+    <div class="row">
+            <div class="col-md-12">
+            <h4>Data Tugas Akhir Komputer Akutansi</h4>
+            {% for doc in data_ka %}
+            <div class="table-responsive">
+
+                    
+                  <table id="mytable" class="table table-bordred table-striped">
+                       
+                       <thead>
+                       
+                       <th><input type="checkbox" id="checkall" /></th>
+                       <th>Nim</th>
+                        <th>Nama</th>
+                         <th>Pembimbing</th>
+                         <th>Angkatan</th>
+                         <th>Tahun Lulus</th>
+                         <th></th>
+                          <th>Edit</th>
+                          
+                           <th>Delete</th>
+                       </thead>
+        <tbody>
+        
+        <tr>
+        <td><input type="checkbox" class="checkthis" /></td>
+        <td>{{ doc.nim }}</td>
+        <td>{{ doc.nama_mhs }}</td>
+        <td>{{ doc.pembimbing }}</td>
+        <td>{{ doc.angkatan }}</td>
+        <td>{{ doc.tahun }}</td>
+        <td></td>
+
+        <td><a href="{{ url_for('edit_doc', nim=doc.nim) }}">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+        
+        <td><a href="{{ url_for('delete_doc', nim=doc.nim) }}"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+        </a>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+     {% endfor %}
+    
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+{% endblock %}
