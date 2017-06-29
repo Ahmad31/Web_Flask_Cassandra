@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+	<div class="panel panel-danger">
+      <div class="panel-heading">Peringatan | {{ nim }}</div>
+      <div class="panel-body">Apakah Anda Yakin Akan Menghapus !</div>
+      <hr>
+      <button type="submit" class="btn btn-info"> Hapus </button>
+      <button type="submit" class="btn btn-primary">Batal</button>
+    </div>
+</main>
+{% endblock %}

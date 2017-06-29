@@ -1,40 +1,30 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-
-<div >
-	<ul class="nav nav-tabs">
-  		<li class="active"><a href="#">Input Dokumen</a></li>
-	</ul>
-	<br>
-	<p>Menu input dokumen skripsi/tugas akhir<br></p>
+Menu input dokumen skripsi/tugas akhir
 	<hr>
-
-	<div class="col-md-12">
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 	<div class="panel panel-primary">
   		<div class="panel-body">
 	  		
-			<form action="{{ request.path }}" method="post">
-			<div class="col-md-5">
+			<form action="{{ url_for('add') }}" method="post">
+			<div class="col-md-5 col-sm-5 col-xs-12">
 				<div class="form-group">
-			  		<label for="usr">Nim:</label>
+			  		<p>Nim:</p>
 			  		<input name ="nim" type="text" class="form-control" id="usr">
 				</div>
 				<div class="form-group">
-			  		<label for="pwd">Nama:</label>
+			  		<p>Nama:</p>
 			  		<input name ="nama"  type="text" class="form-control" id="pwd">
 				</div>
 				<div class="form-group">
-			  		<label for="pwd">Angkaran : </label>
-			  		<input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd">
+			  		<p>Angkaran : </p>
+			  		<input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2011 )">
 				</div>
 				<div class="form-group">
-			  		<label for="pwd">Tahun Lulus: </label>
-			  		<input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy-mm-dd">
+			  		<p>Tahun Lulus: </p>
+			  		<input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2013 )">
 				</div>
 				<div class="form-group">
-			  		<label for="sel1">Jurusan</label>
+			  		<p>Jurusan</p>
 			  		<select name="jurusan" class="form-control" id="sel1">
 			    		<option >Teknik Informatika</option>
 			    		<option >Sistem Informasi</option>
@@ -46,54 +36,49 @@
 
 				
 				<div class="form-group">
-			  		<label for="pwd">Judul Sekripsi:</label>
+			  		<p>Judul Sekripsi:</p>
 			  		<input name ="judul"  type="text" class="form-control" id="pwd">
 				</div>
 
 				<div class="form-group">
-			  		<label for="pwd">Kata Kunci:</label>
+			  		<p>Kata Kunci:</p>
 			  		<input name ="kunci"  type="text" class="form-control" id="pwd">
 				</div>
 
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5 col-sm-5 col-xs-12">
 
 				<div class="form-group">
-			  		<label for="comment">Intisari:</label>
+			  		<p>Intisari:</p>
 			  		<textarea name ="Isari"  class="form-control" rows="5" id="comment"></textarea>
 				</div>
 				<div class="form-group">
-			  		<label for="comment">Pembimbing:</label>
+			  		<p>Pembimbing:</p>
 			  		<input name ="PBimbing"  type="text" class="form-control" id="pwd">
 				</div>
 				<div class="form-group">
-			  		<label for="pwd">Password:</label>
+			  		<p>Password:</p>
 			  		<input name ="pas"  type="text" class="form-control" id="pwd">
 				</div>
 				<div class="form-group">
-			  		<label for="pwd">Upload File:</label><br>
-			  		BAB I : <input id="input-1" name="file_doc1" type="file" class="file">
+			  		<p>Upload File:</p><br>
+			  		BAB I : <input id="input-2" name="file_doc1" type="file" class="file">
 
-			  		BAB II : <input id="input-1" name="file_doc2" type="file" class="file">
+			  		BAB II : <input id="input-2" name="file_doc2" type="file" class="file">
 
-			  		BAB III : <input id="input-1" name="file_doc3" type="file" class="file">
+			  		BAB III : <input id="input-3" name="file_doc3" type="file" class="file">
 
-			  		BAB IV : <input id="input-1" name="file_doc4" type="file" class="file">
+			  		BAB IV : <input id="input-4" name="file_doc4" type="file" class="file">
 
-			  		BAB V : <input id="input-1" name="file_doc5" type="file" class="file">
+			  		BAB V : <input id="input-5" name="file_doc5" type="file" class="file">
 
 				</div>
 				<button type="submit" class="btn btn-primary">Simpan</button>
-
 				</div>
 			</form>
 			<br>
 
  		</div>
 	</div>
-	</div>
-	<br>	
 </div>
-
-
-{% endblock %}
+</div>

@@ -1,29 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
+<main>
+	<br>
+   	<br>
 	{% for doc in detil %}
 	<h4>
+	<div class="center"><p><h2>{{ doc.judul }}</h2></p></div>
+	<br>
+	<div class="center">Penulis</div>
+	<div class="center"><p class="font_size">{{ doc.nama_mhs }}<p></div>
+	<div class="center">{{ doc.nim }}</div>
+	<div class="center"><p>Pembimbing : {{ doc.pembimbing }}</p></div>
+	<hr>
+	<div class="justify"><b>INTISARI: </b>{{ doc.intisari }}</div>
+   	<br>
+   	<br>
+   	<div class="row">
    	<div class="col-sm-12" >
     	<table class="table table-hover">
 		    <tbody>
-		      <tr>
-		        <td class="col-sm-2">Judul</td>
+		        <td class="col-sm-2">Kata kunci</td>
 		        <td>:</td>
-		        <td>{{ doc.judul }}</td>
+		        <td>{{ doc.kata_kunci}}</td>
 		      </tr>
 		      <tr>
-		        <td class="col-sm-2">Intisari</td>
+		        <td class="col-sm-2">Prodi studi</td>
 		        <td>:</td>
-		        <td>{{ doc.intisari }}</td>
+		        <td>{{ doc.prodi }}</td>
 		      </tr>
 		      <tr>
-		        <td class="col-sm-2">Tahun</td>
+		        <td class="col-sm-2">Tahun </td>
 		        <td>:</td>
-		        <td>{{ doc.tahun}}</td>
+		        <td>{{ doc.tahun }}</td>
 		      </tr>
 		      <tr>
-		        <td class="col-sm-2">Nama Penulis</td>
+		        <td class="col-sm-2">File</td>
 		        <td>:</td>
-		        <td>{{ doc.nama_mhs }}</td>
+		        <td>
+		        	<a href="">{{ doc.file1 }}</br></a>
+		        	<a href="">{{ doc.file2 }}</br></a>
+		        	<a href="">{{ doc.file3 }}<br></a>
+		        	<a href="">{{ doc.file4 }}</br></a>
+		        	<a href="">{{ doc.file5 }}</br></a>
+		        </td>
 		      </tr>
 		    </tbody>
 		  </table>
@@ -31,4 +50,5 @@
 		</div>
 	</h4>
    	{% endfor %}
+</main>
 {% endblock %}
