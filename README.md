@@ -120,7 +120,11 @@ Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berda
     
       root# pip3 install cassandra-driver
       root# apt-get install libev4 libev-dev
-     
+ 
+ - Instal CQLAlchemy
+ 
+       root# pip install flask-cqlalchemy
+ 
 - Masuk pada folder, ketik perintah
       
       arsip$ python run.py
