@@ -62,9 +62,13 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
              UN  172.17.0.2  127.61 KB  256          100.0%            de0e020c-8e1a-4b97-b7d8-18bb4239b4a9  rack1
 
 
-## Membuat Keyspace dengan nama "arsip"
-    # cqlsh.> CREATE KEYSPACE arsip
+## Membuat Keyspace dengan nama "project"
+    # cqlsh.> CREATE KEYSPACE project
     WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+ 
+*Catatan
+ replication_factor berjumlah 3 karna menyesuaikan node yang ada untuk melakukan replika dalam mendistribusikan data di dalam node  
+ 
     
 ## Membuat Tabel dengan nama "dokumen"
 -> Masuk Pada container "Cassandra-server1" dengan perintah
@@ -100,7 +104,7 @@ perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bis
     INSERT INTO doc1 (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410091, 'Teknik Informatika', '2017-02-02', 'Arsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster ', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', '2013-01-01', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', 'Ahmad Anwar', 'Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
 
 ## Membuat Index SASI
-Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berdasarkan jundul
+Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berdasarkan jundul, dengan ini query LIKE bisa aktif
        
     # CREATE CUSTOM INDEX cari_judul ON project.document ( judul ) USING 'org.apache.cassandra.index.sasi.SASIIndex' WITH OPTIONS = { 
     'analyzed' : 'true', 
@@ -128,6 +132,7 @@ Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berda
 - Masuk pada folder, ketik perintah
       
       arsip$ python run.py
+      
 - Membuka browser ketik url
       
       127.0.0.1:5000
