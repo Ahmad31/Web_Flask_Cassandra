@@ -42,11 +42,11 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
             ........
             # seeds is actually a comma-delimited list of addresses.
             # Ex: "<ip1>,<ip2>,<ip3>"
-            - seeds: "172.17.0.2,172.17.0.3,172.17.0.4"     #ini diisi dengan alamat IP masing-masing node1, node2, node3
+            - seeds: "172.17.0.2,172.17.0.3,172.17.0.4"     #ini diisi dengan alamat IP semua node yang akan digabungkan kedalam cluster/datacenter node1, node2, node3
             ........
             listen_address: 172.17.0.2                      #Awalnya "localhost", diganti IP masing-masing node, node1(172.17.0.2), node2(172.17.0.3), node3(172.17.0.4)
             ........
-            rpc_address: localhost                          #Awalnya "localhost", diganti IP masing-masing node, node1(172.17.0.2), node2(172.17.0.3), node3(172.17.0.4)
+            rpc_address: 172.17.0.2                         #Awalnya "localhost", diganti IP masing-masing node, node1(172.17.0.2), node2(172.17.0.3), node3(172.17.0.4)
 
 ## Menjalankan Cassandra :
           
@@ -55,17 +55,18 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
              root# service cassandra status
                * Cassandra is running
                
-             root# nodetool status
-             Datacenter: datacenter1
+             root# nodetoatus
              =======================
              Status=Up/Down
              |/ State=Normal/Leaving/Joining/Moving
-              --  Address     Load       Tokens       Owns (effective)  Host ID                               Rack
-             UN  172.17.0.2  127.61 KB  256          100.0%            de0e020c-8e1a-4b97-b7d8-18bb4239b4a9  rack1
+              --  Address     Load       Tokens       Owns (effective)  Host ID                          Rack
+             UN  172.17.0.3  221.11 KiB   256          ?       24ebee89-7779-4904-82d6-138244006375  rack1
+             UN  172.17.0.2  449.22 KiB   256          ?       8efa9bcd-83ec-412c-a2dd-a736aacf6956  rack1
+             UN  172.17.0.4  432.26 KiB   256          ?       ec854883-ab41-4f79-b176-b77679e713de  rack1
 
 
 ## Membuat Keyspace dengan nama "project"
-    # cqlsh.> CREATE KEYSPACE project
+    # cqlsh> CREATE KEYSPACE project
     WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
  
 *Catatan
@@ -107,14 +108,14 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
     
 
 ## *Catatan
-perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bisa dibuat disembarang server virtual node1, node2 atau node3.
+perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bisa dibuat disembarang server virtual bisa di node1, node2 atau node3.
 
 ## Sample Data
     # cqlsh 172.17.0.2
     
     cqlsh:project> use project
 
-    cqlsh:project> INSERT INTO doc1 (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410091, 'Teknik Informatika', '2017-02-02', 'Arsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster ', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', '2013-01-01', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', 'Ahmad Anwar', 'Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+    cqlsh:project> INSERT INTO doc1 (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410091, 'Teknik Informatika', 2017, 'Arsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster ', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', '2013-01-01', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', 'Ahmad Anwar', 'Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
     
     
     INSERT INTO dokumen(nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410121, 'Sistem Informasi', 2017, 'Big data untuk penjualan ', 'Big data', 2013, 'big data', 'Heru', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
@@ -129,7 +130,7 @@ perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bis
 ## Membuat Index SASI
 Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berdasarkan jundul, dengan ini query LIKE bisa aktif
        
-    # CREATE CUSTOM INDEX cari_judul ON project.document ( judul ) USING 'org.apache.cassandra.index.sasi.SASIIndex' WITH OPTIONS = { 
+    cqlsh:project> CREATE CUSTOM INDEX cari_judul ON project.dokumen ( judul ) USING 'org.apache.cassandra.index.sasi.SASIIndex' WITH OPTIONS = { 
     'analyzed' : 'true', 
     'analyzer_class' : 'org.apache.cassandra.index.sasi.analyzer.NonTokenizingAnalyzer', 
     'case_sensitive' : 'false', 
@@ -137,28 +138,41 @@ Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berda
     };
 
 
-## Uji Coba mencari data dengan kata "cluster"
-    cqlsh:project> SELECT * FROM document WHERE judul LIKE '%cluster%'
+## Uji Coba mencari data dengan kata "cluster" pada tabel dokumen
+    cqlsh:project> SELECT * FROM dokumen WHERE judul LIKE '%cluster%'
 
 
 ## Menjalankan Program
-- Instal semua keperluan untuk menjalankan framework Flask
+- Dilakukan di komputer host
+- Instal semua keperluan untuk menjalankan framework Flask :-> Sample Ubuntu OS install flask 
+
+      $ sudo apt-get install python-virtualenv
+
 - Instal Driver Cassandra
-    
-      root# pip3 install cassandra-driver
-      root# apt-get install libev4 libev-dev
- 
+       
+      $  pip install cassandra-driver
+      $  apt-get install libev4 libev-dev
+      
+- Pull aplikasi dan masuk pada folder
+- Mengaktifkan environman aplikasi
+
+      Web_Flask_Cassandra$ source flask/bin/activate
+      
+- Sampai terlihat ada "(flask)" didepan folder
+
+      (flask) Web_Flask_Cassandra$ 
+
  - Instal CQLAlchemy
  
-       root# pip install flask-cqlalchemy
+       (flask) Web_Flask_Cassandra$ pip install flask-cqlalchemy
  
-- Masuk pada folder, ketik perintah
+-  ketik perintah
       
-      arsip$ python run.py
+       (flask) Web_Flask_Cassandra$ python run.py
       
 - Membuka browser ketik url
       
-      127.0.0.1:5000
+       127.0.0.1:5000
       
 
 
