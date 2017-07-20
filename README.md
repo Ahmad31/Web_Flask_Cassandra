@@ -65,36 +65,49 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
              UN  172.17.0.4  432.26 KiB   256          ?       ec854883-ab41-4f79-b176-b77679e713de  rack1
 
 
-## Membuat Keyspace dengan nama "project"
-    # cqlsh> CREATE KEYSPACE project
-    WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+## Membuat Keyspace dengan nama "project", 
+- Dilakukan sekali saja disembarang node. boleh node1, node2 atau node3
+- Masuk pada cqlsh
+
+      root# cqlsh 172.17.0.2
+      
+- Buat Kesypace :
+      
+      cqlsh> CREATE KEYSPACE project
+      WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
  
 *Catatan
  replication_factor berjumlah 3 karna menyesuaikan node yang ada untuk melakukan replika dalam mendistribusikan data di dalam node  
  
     
 ## Membuat Tabel dengan nama "dokumen"
--> Masuk Pada container "Cassandra-server1" dengan perintah
+- Masuk Pada container "Cassandra-server1" dengan perintah
     
-    # cqlsh 172.17.0.2
+      # cqlsh 172.17.0.2
    
-    CREATE TABLE dokumen (
-    nim int,
-    prodi text,
-    tahun date,
-    judul text,
-    kata_kunci text,
-    angkatan date,
-    file1 text,
-    file2 text,
-    file3 text,
-    file4 text,
-    file5 text,
-    intisari text,
-    nama_mhs text,
-    password text,
-    pembimbing text,
-    PRIMARY KEY (prodi,nim ));
+- Memilih keyspace
+
+      cqlsh> USE project
+
+- Buat tabel
+
+        CREATE TABLE dokumen (
+        nim int,
+        prodi text,
+        tahun date,
+        judul text,
+        kata_kunci text,
+        angkatan date,
+        file1 text,
+        file2 text,
+        file3 text,
+        file4 text,
+        file5 text,
+        intisari text,
+        nama_mhs text,
+        password text,
+        pembimbing text,
+        PRIMARY KEY (prodi,nim ));
 
  
 ## Membuat Tabel dengan nama "user_app"
