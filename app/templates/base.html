@@ -165,6 +165,7 @@ input:checked + label {
                             {% if session['logged_in'] %}
                             <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Data User</a></li>
                             <li><a href="{{ url_for('data_doc') }}"><span class="glyphicon glyphicon-file"></span>Data Dokumen</a></li>
+
                             <li><a href="{{ 'logout' }}"><span class="glyphicon glyphicon-log-out"> 
                             </span> Logout</a></li>
                             {% else %}
