@@ -22,10 +22,10 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
     sudo docker exec -ti cassandra-server apt-get install iputils-ping telnet bridge-utils wget curl vim
     sudo docker exec -ti cassandra-server apt-get install libevent-dev aptitude net-tools
 
-# Install Cassandra versi 3.11
+# Install Cassandra versi 3.8
 ## Instal pada masing-masing container Docker:
             
-     root# echo "deb http://www.apache.org/dist/cassandra/debian 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+     root# echo "deb http://www.apache.org/dist/cassandra/debian 38x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
             
      root# curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
 
