@@ -18,12 +18,14 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
     sudo docker run -d -i -p 5054:24 --ulimit nofile=100000:100000 --ulimit memlock=-1:-1 --ulimit nproc=32768:32768 --name="cassandra-server3" ubuntu:15.04 /bin/bash
 
 ## Insatal Java 8 dan vim, libevent-dev pada container "node1, node2, node3"
-    sudo docker exec -ti cassandra-server apt-get update
-    sudo docker exec -ti cassandra-server apt-get install iputils-ping telnet bridge-utils wget curl vim
-    sudo docker exec -ti cassandra-server apt-get install libevent-dev aptitude net-tools
+    sudo docker exec -ti cassandra-server1 apt-get update
+    sudo docker exec -ti cassandra-server1 apt-get install iputils-ping telnet bridge-utils wget curl vim
+    sudo docker exec -ti cassandra-server1 apt-get install libevent-dev aptitude net-tools
 
 # Install Cassandra versi 3.8
 ## Instal pada masing-masing container Docker:
+     
+     docker exec -ti cassandra-server1 bash
             
      root# echo "deb http://www.apache.org/dist/cassandra/debian 38x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
             
@@ -93,15 +95,36 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
     pembimbing text,
     PRIMARY KEY (prodi,nim ));
 
+ 
+## Membuat Tabel dengan nama "user_app"
+    
+    CREATE TABLE user_app (
+    jabatan text,
+    nip int,
+    password text,
+    username text,
+    PRIMARY KEY (jabatan, nip))
+    
+
 ## *Catatan
 perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bisa dibuat disembarang server virtual node1, node2 atau node3.
 
 ## Sample Data
     # cqlsh 172.17.0.2
     
-    # use arsip
+    cqlsh:project> use project
 
-    INSERT INTO doc1 (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410091, 'Teknik Informatika', '2017-02-02', 'Arsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster ', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', '2013-01-01', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', 'Ahmad Anwar', 'Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+    cqlsh:project> INSERT INTO doc1 (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410091, 'Teknik Informatika', '2017-02-02', 'Arsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster ', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', '2013-01-01', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', 'Ahmad Anwar', 'Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+    
+    
+    INSERT INTO dokumen(nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410121, 'Sistem Informasi', 2017, 'Big data untuk penjualan ', 'Big data', 2013, 'big data', 'Heru', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+
+    INSERT INTO dokumen (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410100, 'Teknik Informatika', 2017, 'Coba pemodelan data 1', 'Coba pemodelan data 1',2013, 'Coba pemodelan data 1', 'Ibnu Masud', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+    
+    INSERT INTO dokumen (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410122, 'Teknik Informatika', 2017, 'Coba pemodelan data 2', 'Coba pemodelan data 2', 2013, 'Coba pemodelan data 2', 'Usam BIn Afan', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+    
+    INSERT INTO dokumen (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410333, 'Sistem Informasi', 2017, 'Coba pemodelan data 3', 'Coba pemodelan data 3', 2013, 'Coba pemodelan data 3', 'Abu Hamzah', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+
 
 ## Membuat Index SASI
 Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berdasarkan jundul, dengan ini query LIKE bisa aktif
@@ -118,7 +141,7 @@ Ini diguanakan untuk mengimplementasikan menu pencarian pada table dokumen berda
     cqlsh:project> SELECT * FROM document WHERE judul LIKE '%cluster%'
 
 
-## Menjalan Program
+## Menjalankan Program
 - Instal semua keperluan untuk menjalankan framework Flask
 - Instal Driver Cassandra
     
