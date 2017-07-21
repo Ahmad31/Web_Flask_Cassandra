@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+      <div class="panel-body">
+        <form action="{{ url_for('add_user_mhs') }}" method="post">
+        <div class="form-group">
+            <p>Jurusan</p>
+            <select name="jurusan" class="form-control" id="sel1">
+              <option >Teknik Informatika</option>
+              <option >Sistem Informasi</option>
+              <option >Teknik Komputer</option>
+              <option >Management Informasi</option>
+              <option >Komputer Akutansi</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="usr">NIM:</label>
+            <input name ="nim" type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="usr">Nama:</label>
+            <input name ="nama_mhs" type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="usr">Judul:</label>
+            <input name ="judul" type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input name ="password"  type="password" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-default">Simpan</button>
+      </form> 
+      </div>
+  </div>

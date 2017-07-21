@@ -1,12 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<main>
+<main> 
+	<form action="{{ url_for('respon_delete', prodi='{{ prodi }}', nim='{{ nim }}') }}" method="post">
 	<div class="panel panel-danger">
-      <div class="panel-heading">Peringatan | {{ nim }}</div>
+      <div class="panel-heading">Peringatan  </div>
       <div class="panel-body">Apakah Anda Yakin Akan Menghapus !</div>
+
+      <div class="form-group">
+            Jurusan
+            <select name="prodi_in" class="form-control" id="sel1">
+              <option >{{ prodi }}</option>
+            </select>
+      </div>
+
+      <div class="form-group">
+            Nim
+            <select name="nim_in" class="form-control" id="sel1">
+              <option >{{ nim }}</option>
+            </select>
+      </div>
+
       <hr>
       <button type="submit" class="btn btn-info"> Hapus </button>
-      <button type="submit" class="btn btn-primary">Batal</button>
+      </form>
+      <a href="{{ url_for('data_doc') }}"> Kembali </a> 
     </div>
+  	
+  	
 </main>
 {% endblock %}

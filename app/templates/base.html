@@ -161,17 +161,41 @@ input:checked + label {
                       <div class="navbar-header">
                           <a class="navbar-brand" href="/index">Home</a>
                             <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                            
+                            
+
                             {% if session['logged_in'] %}
-                            <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Data User</a></li>
                             <li><a href="{{ url_for('data_doc') }}"><span class="glyphicon glyphicon-file"></span>Data Dokumen</a></li>
-                            <li><a href="{{ 'logout' }}"><span class="glyphicon glyphicon-log-out"> 
+                            <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Data Pengguna</a></li>
+                            <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                            <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"> 
                             </span> Logout</a></li>
                             {% else %}
 
-                              <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"> 
-                            </span> Login</a></li>
-                            {% endif %}           
+                                {% if session['logged_biasa'] %}
+
+                                <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                                <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"> 
+                                </span> Logout</a></li>
+                           
+                                {% else %}
+                                  
+                                  {% if session['logged_mhs'] %}
+                                    <li><a href="{{ url_for('unggah_doc') }}"><span class="glyphicon glyphicon-file"></span>Unggah Dokumen</a></li>
+                                    <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Profil </a></li>
+                                    <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                                    <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"> 
+                                    </span> Logout</a></li>
+
+                                    {% else %}
+                                      <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"> 
+                                      </span> Login</a></li>
+                            
+
+                            {% endif %}                               
+                            {% endif %}
+                            {% endif %}
+                             
                         </ul>
                         </div>
                     </div>

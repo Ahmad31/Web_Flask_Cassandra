@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+  
+  <input id="tab1" type="radio" name="tabs" checked>
+  <label for="tab1">Tambah Mahasiswa</label>
+
+  <input id="tab2" type="radio" name="tabs">
+  <label for="tab2">Tambah Petugas/dosen</label>
+    
+  <input id="tab3" type="radio" name="tabs">
+  <label for="tab3">User Petugas dan Dosen</label>
+
+  <input id="tab4" type="radio" name="tabs">
+  <label for="tab4">User Mahasiswa</label>
+  
+    
+  <section id="content1">
+      {% include "input_user_mhs.html" %}
+  </section>
+    
+  <section id="content2">
+  
+    <div class="row">
+           {% include "input_user.html" %}
+    </div>
+
+
+  </section>
+  
+  <section id="content3">
+  
+    <div class="row">
+       <div class="col-md-12">
+          <div class="alert alert-info">
+             <h4><b>Data Petugas</b></h4>
+          </div>
+                {% for data in user_petugas %}
+                <div class="table-responsive">
+
+                        
+                      <table id="mytable" class="table table-bordred table-striped">
+                           
+                           <thead>
+                           
+                           <th><input type="checkbox" id="checkall" /></th>
+                           <th>Jabatan</th>
+                            <th>Nip</th>
+                             <th>Username</th>
+                             <th></th>
+                              <th>Edit</th>
+                               <th>Delete</th>
+                           </thead>
+            <tbody>
+            
+            <tr>
+            <td><input type="checkbox" class="checkthis" /></td>
+            <td>{{ data.jabatan }}</td>
+            <td>{{ data.nip }}</td>
+            <td>{{ data.username }}</td>
+            <td></td>
+
+            <td><a href="">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+            
+            <td><a href=""><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+            </a>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+         {% endfor %}
+        
+        </div>
+
+        <hr>
+
+        <div class="alert alert-info">
+           <h4><b>Data Dosen</b></h4>
+        </div>
+        <div class="col-md-12">
+                {% for data in user_dosen %}
+                <div class="table-responsive">
+
+                        
+                      <table id="mytable" class="table table-bordred table-striped">
+                           
+                           <thead>
+                           
+                           <th><input type="checkbox" id="checkall" /></th>
+                           <th>Jabatan</th>
+                            <th>Nip</th>
+                             <th>Username</th>
+                             <th></th>
+                              <th>Edit</th>
+                               <th>Delete</th>
+                           </thead>
+            <tbody>
+            
+            <tr>
+            <td><input type="checkbox" class="checkthis" /></td>
+            <td>{{ data.jabatan }}</td>
+            <td>{{ data.nip }}</td>
+            <td>{{ data.username }}</td>
+            <td></td>
+
+            <td><a href="">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+            
+            <td><a href=""><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+            </a>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+         {% endfor %}
+        
+          </div>
+    </div>
+
+
+  </section>
+
+  <section id="content4">
+  
+      <div class="row">
+       <div class="col-md-12">
+          <div class="alert alert-info">
+             <h4><b>Data User Mahasiswa</b></h4>
+          </div>
+                {% for data in user_mhs %}
+                <div class="table-responsive">
+
+                        
+                      <table id="mytable" class="table table-bordred table-striped">
+                           
+                           <thead>
+                           
+                           <th><input type="checkbox" id="checkall" /></th>
+                           <th>Jurusan</th>
+                            <th>Nim</th>
+                             <th>Username</th>
+                             <th></th>
+                              <th>Edit</th>
+                               <th>Delete</th>
+                           </thead>
+            <tbody>
+            
+            <tr>
+            <td><input type="checkbox" class="checkthis" /></td>
+            <td>{{ data.prodi }}</td>
+            <td>{{ data.nim }}</td>
+            <td>{{ data.nama_mhs }}</td>
+            <td></td>
+
+            <td><a href="">  <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
+            
+            <td><a href=""><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" target="#delete" data-title="Delete"  ><span class="glyphicon glyphicon-trash"></span></button></p>
+            </a>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+         {% endfor %}
+        
+        </div>
+    </div>
+
+
+  </section>
+
+
+
+</main>
+
+
+{% endblock %}

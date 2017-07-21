@@ -43,7 +43,24 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.username, self.password, self.alamat)
 
+class User_app(db.Model):
+    __table_name__ = "user_app"
+    jabatan = db.columns.Text(primary_key=True)
+    nip = db.columns.Integer(primary_key=True)
+    username = db.columns.Text()
+    password = db.columns.Text()
 
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return unicode(self.username)
+
+    def __repr__(self):
+        return '<User_app %r>' % ( self.jabatan, self.nip, self.username, self.password)
 
 
 
