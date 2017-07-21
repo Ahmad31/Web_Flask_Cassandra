@@ -1,0 +1,86 @@
+Menu input dokumen skripsi/tugas akhir
+	<hr>
+{% if session['logged_mhs'] %}
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+	<div class="panel panel-primary">
+  		<div class="panel-body">
+	  		
+			<form action="{{ url_for('respon_edit') }}" method="post">
+			<div class="col-md-5 col-sm-5 col-xs-12">
+				<div class="form-group">
+			  		<p>Nim:</p>
+			  		<input name ="nim" type="text" class="form-control" id="usr">
+				</div>
+				<div class="form-group">
+			  		<p>Nama:</p>
+			  		<input name ="nama"  type="text" class="form-control" id="pwd">
+				</div>
+				<div class="form-group">
+			  		<p>Angkaran : </p>
+			  		<input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2011 )">
+				</div>
+				<div class="form-group">
+			  		<p>Tahun Lulus: </p>
+			  		<input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2013 )">
+				</div>
+				<div class="form-group">
+			  		<p>Jurusan</p>
+			  		<select name="jurusan" class="form-control" id="sel1">
+			    		<option >Teknik Informatika</option>
+			    		<option >Sistem Informasi</option>
+			    		<option >Teknik Komputer</option>
+			    		<option >Management Informasi</option>
+			    		<option >Komputer Akutansi</option>
+			  		</select>
+				</div>
+
+				
+				<div class="form-group">
+			  		<p>Judul Sekripsi:</p>
+			  		<input name ="judul"  type="text" class="form-control" id="pwd">
+				</div>
+
+				<div class="form-group">
+			  		<p>Kata Kunci:</p>
+			  		<input name ="kunci"  type="text" class="form-control" id="pwd">
+				</div>
+
+				</div>
+				<div class="col-md-5 col-sm-5 col-xs-12">
+
+				<div class="form-group">
+			  		<p>Intisari:</p>
+			  		<textarea name ="Isari"  class="form-control" rows="5" id="comment"></textarea>
+				</div>
+				<div class="form-group">
+			  		<p>Pembimbing:</p>
+			  		<input name ="PBimbing"  type="text" class="form-control" id="pwd">
+				</div>
+				<div class="form-group">
+			  		<p>Password:</p>
+			  		<input name ="pas"  type="text" class="form-control" id="pwd">
+				</div>
+				<div class="form-group">
+			  		<p>Upload File:</p><br>
+			  		BAB I : <input id="input-2" name="file_doc1" type="file" class="file">
+
+			  		BAB II : <input id="input-2" name="file_doc2" type="file" class="file">
+
+			  		BAB III : <input id="input-3" name="file_doc3" type="file" class="file">
+
+			  		BAB IV : <input id="input-4" name="file_doc4" type="file" class="file">
+
+			  		BAB V : <input id="input-5" name="file_doc5" type="file" class="file">
+
+				</div>
+				<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+			<br>
+
+ 		</div>
+	</div>
+</div>
+{% endif %}
+</div>
