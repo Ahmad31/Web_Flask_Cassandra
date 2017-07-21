@@ -18,16 +18,24 @@
                         <div class="panel-heading">
                             <h4 class="panel-title panel-title-adjust">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                    <i class="fa fa-plus"></i>Login Mahasiswa
+                                    <i class="fa fa-plus"></i>Login
                                 </a>
                             </h4>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                    <form>
+                                    <form action="{{ url_for('login_app') }}" method="POST">
+                                     Pilih User : 
+                                     <div class="form-group">
+                                      <select name="jabatan" class="form-control" >
+                                        <option >Petugas</option>
+                                        <option >Dosen</option>
+                                      </select>
+                                    </div>
+
                                       <div class="input-group">
-                                        <span class="input-group-addon">Username</span>
-                                        <input id="msg" type="text" class="form-control" name="username" placeholder="Masukan Username Andra">
+                                        <span class="input-group-addon"> Nip </span>
+                                        <input id="msg" type="text" class="form-control" name="nip" placeholder="Masukan Nip Anda">
                                       </div>
                                       <br>
                                       <div class="input-group">
@@ -40,20 +48,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary">
+                    
+             <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title panel-title-adjust">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    <i class="fa fa-plus"></i>Login Admin
+                                    <i class="fa fa-plus"></i>Login Mahasiswa
                                 </a>
                             </h4>
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
-                                 <form action="{{ url_for('login_admin') }}" method="POST">
+                                 <form action="{{ url_for('login_mhs') }}" method="POST">
+                                      Pilih Jurusan : 
+                                      <div class="form-group">
+                                        <select name="jurusan" class="form-control" id="sel1">
+                                          <option >Teknik Informatika</option>
+                                          <option >Sistem Informasi</option>
+                                          <option >Teknik Komputer</option>
+                                          <option >Management Informasi</option>
+                                          <option >Komputer Akutansi</option>
+                                        </select>
+                                      </div>
+
                                       <div class="input-group">
-                                        <span class="input-group-addon">Username</span>
-                                        <input id="msg" type="text" class="form-control" name="username" placeholder="Masukan Username Anda">
+                                        <span class="input-group-addon">NIM</span>
+                                        <input id="msg" type="text" class="form-control" name="nim" placeholder="Masukan Username Anda">
                                       </div>
                                       <br>
                                       <div class="input-group">
@@ -62,12 +82,12 @@
                                       </div>
                                       <br>
                                       <button type="submit" class="btn btn-default">Login</button>
-                                    </form>   
-                            </div>
-                        </div>
-                    </div>
-                    
-                  
+                            </form>   
+                      </div>
+                  </div>
+              </div>        
+        
+
                 </div>
 
             </div>
@@ -82,9 +102,7 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-58126461-1', 'auto');
   ga('send', 'pageview');
-
 </script>
 {% endblock %}
