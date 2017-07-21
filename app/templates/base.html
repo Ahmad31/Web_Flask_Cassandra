@@ -27,7 +27,6 @@ $("#mytable #checkall").click(function () {
             $("#mytable input[type=checkbox]").each(function () {
                 $(this).prop("checked", true);
             });
-
         } else {
             $("#mytable input[type=checkbox]").each(function () {
                 $(this).prop("checked", false);
@@ -37,7 +36,6 @@ $("#mytable #checkall").click(function () {
     
     $("[data-toggle=tooltip]").tooltip();
 });
-
     </script>
     <style type="text/css">
        .left    { text-align: left;}
@@ -45,34 +43,28 @@ $("#mytable #checkall").click(function () {
        .center  { text-align: center;}
        .justify { text-align: justify;}
        .font_size { font-size: 25px; }
-
        *, *:before, *:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 html, body {
   height: 100%;
 }
-
 body {
   font: 14px/1 'Open Sans', sans-serif;
   color: #555;
   background: #eee;
 }
-
 h1 {
   padding: 50px 0;
   font-weight: 400;
   text-align: center;
 }
-
 p {
   margin: 0 0 20px;
   line-height: 1.5;
 }
-
 main {
   min-width: 320px;
   max-width: 1240px;
@@ -80,17 +72,14 @@ main {
   margin: 0 auto;
   background: #fff;
 }
-
 section {
   display: none;
   padding: 20px 0 0;
   border-top: 1px solid #ddd;
 }
-
 input {
   display: none;
 }
-
 label {
   display: inline-block;
   margin: 0 0 -1px;
@@ -100,26 +89,21 @@ label {
   color: #bbb;
   border: 1px solid transparent;
 }
-
 label:before {
   font-family: fontawesome;
   font-weight: normal;
   margin-right: 10px;
 }
-
-
 label:hover {
   color: #888;
   cursor: pointer;
 }
-
 input:checked + label {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid orange;
   border-bottom: 1px solid #fff;
 }
-
 #tab1:checked ~ #content1,
 #tab2:checked ~ #content2,
 #tab3:checked ~ #content3,
@@ -128,7 +112,6 @@ input:checked + label {
 #tab6:checked ~ #content6 {
   display: block;
 }
-
 @media screen and (max-width: 650px) {
   label {
     font-size: 0;
@@ -138,7 +121,6 @@ input:checked + label {
     font-size: 18px;
   }
 }
-
 @media screen and (max-width: 400px) {
   label {
     padding: 15px;
@@ -148,10 +130,7 @@ input:checked + label {
     .col-md-4.col-sm-6.col-xs-12
     .col-md-4.col-sm-6.col-xs-12
     .col-md-4.col-sm-6.col-xs-12
-
     </style>
-
-
 </head>
 <body>
     
@@ -161,18 +140,36 @@ input:checked + label {
                       <div class="navbar-header">
                           <a class="navbar-brand" href="/index">Home</a>
                             <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                            
+                            
                             {% if session['logged_in'] %}
-                            <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Data User</a></li>
                             <li><a href="{{ url_for('data_doc') }}"><span class="glyphicon glyphicon-file"></span>Data Dokumen</a></li>
-
-                            <li><a href="{{ 'logout' }}"><span class="glyphicon glyphicon-log-out"> 
+                            <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Data Pengguna</a></li>
+                            <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                            <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"> 
                             </span> Logout</a></li>
                             {% else %}
-
-                              <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"> 
-                            </span> Login</a></li>
-                            {% endif %}           
+                                {% if session['logged_biasa'] %}
+                                <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                                <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"> 
+                                </span> Logout</a></li>
+                           
+                                {% else %}
+                                  
+                                  {% if session['logged_mhs'] %}
+                                    <li><a href="{{ url_for('unggah_doc') }}"><span class="glyphicon glyphicon-file"></span>Unggah Dokumen</a></li>
+                                    <li><a href="{{ url_for('addUser') }}"><span class="glyphicon glyphicon-user"></span> Profil </a></li>
+                                    <li><a href="{{ url_for('form_search')}}"><span class="glyphicon glyphicon-search"></span>Pencarian</a></li>
+                                    <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"> 
+                                    </span> Logout</a></li>
+                                    {% else %}
+                                      <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"> 
+                                      </span> Login</a></li>
+                            
+                            {% endif %}                               
+                            {% endif %}
+                            {% endif %}
+                             
                         </ul>
                         </div>
                     </div>
@@ -196,7 +193,5 @@ input:checked + label {
       </div>
     </footer>
     </div>
-
-
 </body>
 </html>
