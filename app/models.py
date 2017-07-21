@@ -25,8 +25,8 @@ class Dokumen(db.Model):
     def __repr__(self):
         return '<Dokumen %r>' % (self.nim, self.nama_mhs, self.angkatan, self.tahun, self.prodi, self.judul, self.kata_kunci, self.intisari, self.pembimbing, self.password, self.file1, self.file2, self.file3, self.file4, self.file5)
 
-class User_admin(db.Model):
-    __table_name__ = "user_admin"
+class User(db.Model):
+    __table_name__ = "user"
     username = db.columns.Text(primary_key=True)
     password = db.columns.Text(primary_key=True)
     alamat = db.columns.Text()
@@ -43,8 +43,21 @@ class User_admin(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.username, self.password, self.alamat)
 
+class User_app(db.Model):
+    __table_name__ = "user_app"
+    jabatan = db.columns.Text(primary_key=True)
+    nip = db.columns.Integer(primary_key=True)
+    username = db.columns.Text()
+    password = db.columns.Text()
 
+    def is_active(self):
+        return True
 
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return unicode(self.username)
 
-
-
+    def __repr__(self):
+        return '<User_app %r>' % ( self.jabatan, self.nip, self.username, self.password)
