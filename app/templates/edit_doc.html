@@ -13,7 +13,9 @@
     {% for edit_doc in view_doc %}
     <div class="form-group">
       Nim 
-      <input type="text" name="nim_mhs" class="form-control" value="{{ edit_doc.nim }}">
+      <select name="nim_mhs">
+        <option>  {{ edit_doc.nim }} </option>
+      </select>
     </div>
     <div class="form-group">
       Nama
@@ -39,8 +41,9 @@
 
     <div class="form-group">
       Jurusan : 
-      <label>{{ edit_doc.prodi }}</label>
-      
+      <select name="jurusan">
+        <option>  {{ edit_doc.prodi }} </option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -73,6 +76,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Ubah</button>
+    <a href="{{ url_for('data_doc') }}"> Kembali </a>
     {% endfor %}
   </form>
 
