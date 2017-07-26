@@ -94,10 +94,10 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
         CREATE TABLE dokumen (
         nim int,
         prodi text,
-        tahun date,
+        tahun int,
         judul text,
         kata_kunci text,
-        angkatan date,
+        angkatan int,
         file1 text,
         file2 text,
         file3 text,
