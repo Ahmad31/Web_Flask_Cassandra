@@ -92,7 +92,7 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
 - Buat tabel
 
         CREATE TABLE dokumen (
-        nim int,
+        nim varchar,
         prodi text,
         tahun int,
         judul text,
