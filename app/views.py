@@ -203,7 +203,7 @@ def respon_delete():
 		if not request.form['prodi_in'] or not request.form['nim_in']:
 			error = "Masukkan Data dengan komplit dan sesuai!"
 		else:
-			sesi.execute(" DELETE FROM dokumen WHERE prodi = %s AND nim = %s ", (request.form['prodi_in'], (int(request.form['nim_in'])) ) )
+			sesi.execute(" DELETE FROM dokumen WHERE prodi = %s AND nim = %s ", (request.form['prodi_in'], (request.form['nim_in']) ) )
 			error = "Maaf Isi Data Secara Lengkap"
 			return redirect(url_for('data_doc'))
 	return redirect(url_for('data_doc'))
