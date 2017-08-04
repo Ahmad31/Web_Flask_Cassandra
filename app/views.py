@@ -70,7 +70,7 @@ def logout():
 
 @app.route('/add', methods = ['GET', 'POST'])
 def add():
-
+	error = None
 	if request.method == 'POST':
 		if not request.form['nim'] or not request.form['judul']:
 			error = "Masukkan Data dengan komplit dan sesuai!"
@@ -93,7 +93,7 @@ def add():
 							)
 			doc.save()
 
-			flash('Sukses menambah data')
+			error="Sukses menambah data"
 			return redirect(url_for('index'))
 
 	return redirect(url_for('data_doc'))
@@ -110,6 +110,7 @@ def addUser():
 
 @app.route('/add_user_mhs', methods = ['GET', 'POST'])
 def add_user_mhs():
+	error = None
 	if request.method == 'POST':
 		if not request.form['nim'] or not request.form['jurusan']:
 			error = "Masukkan Data dengan komplit dan sesuai!"
@@ -122,13 +123,14 @@ def add_user_mhs():
 							)
 			doc.save()
 
-			flash('Sukses menambah data')
+			error="Sukses menambah data"
 			return redirect(url_for('addUser'))
 
 	return redirect(url_for('addUser'))
 
 @app.route('/add_data_user', methods = ['GET', 'POST'])
 def add_data_user():
+	error = None
 	if request.method == 'POST':
 		if not request.form['nip'] or not request.form['jabatan']:
 			error = "Masukkan Data dengan komplit dan sesuai!"
@@ -140,7 +142,7 @@ def add_data_user():
 							)
 			doc.save()
 
-			flash('Sukses menambah data')
+			error="Sukses menambah data"
 			return redirect(url_for('addUser'))
 
 	return redirect(url_for('addUser'))
@@ -173,6 +175,7 @@ def edit_doc(nim):
 
 @app.route('/respon_edit', methods=['GET','POST'])
 def respon_edit():
+	error = None
 	if request.method == 'POST':
 		if not request.form['nama_m']:
 			error = "Masukkan Data dengan komplit dan sesuai!"
@@ -192,18 +195,85 @@ def respon_edit():
 	return redirect(url_for('data_doc'))
 
 
+
+@app.route('/respon_unggah', methods=['GET','POST'])
+def respon_unggah():
+	error = None
+	if request.method == 'POST':
+		if not request.form['nim_mhs']:
+			error = "Masukkan Data dengan komplit dan sesuai!"
+		else:
+			data = Dokumen.objects(prodi=request.form['jurusan'], nim=request.form['nim_mhs']).update(
+									angkatan=request.form['angkatan_mhs'],
+									tahun=request.form['tlulus_mhs'],
+									kata_kunci=request.form['kunci_kata'],
+									intisari=request.form['intisari_doc'],
+									pembimbing=request.form['pembimbing_mhs'],
+									file1=request.form['file_doc1'],
+									file2=request.form['file_doc2'],
+									file3=request.form['file_doc3'],
+									file4=request.form['file_doc4'],
+									file5=request.form['file_doc5']
+									)
+			error = "Maaf Isi Data Secara Lengkap"
+			return redirect(url_for('unggah_doc'))
+
+	return redirect(url_for('unggah_doc'))
+
+
+@app.route('/edit_user_pet/<nip>')
+def edit_user_pet(nip):
+	view_user = User_app.objects(nip = nip).allow_filtering()
+	return render_template("edit_user_pet.html", view_user=view_user)
+
+
+@app.route('/respon_edit_pet', methods=['GET','POST'])
+def respon_edit_pet():
+	error = None
+	if request.method == 'POST':
+		if not request.form['jabatan'] or not request.form['nip']:
+			error = "Masukkan Data dengan komplit dan sesuai!"
+		else:
+			data = User_app.objects(jabatan=request.form['jabatan'], nip=request.form['nip']).update(
+									username=request.form['username'],
+									password=request.form['password']
+									)
+			error = "Data Berhasil diubah"
+			return redirect(url_for('addUser'))
+
+	return redirect(url_for('addUser'))
+
+
 @app.route('/delete_doc/<prodi>-<nim>', methods=['GET','POST'])
 def delete_doc(prodi,nim):
 	return render_template("delete_doc.html", nim=nim, prodi=prodi) 
 
 
+@app.route('/delete_user_pet/<jabatan>-<nip>')
+def delete_user_pet(jabatan, nip):
+	return render_template("delete_petugas.html", jabatan=jabatan, nip=nip)
+
+@app.route('/respon_delete_user_pet', methods=['GET','POST'])
+def respon_delete_user_pet():
+	error = None
+	if request.method == 'POST':
+		if not request.form['jabatan_in'] or not request.form['nip_in']:
+			error = "Masukkan Data dengan komplit dan sesuai!"
+		else:
+			sesi.execute(" DELETE FROM user_app WHERE jabatan = %s AND nip = %s ", (request.form['jabatan_in'], (int(request.form['nip_in'])) ) )
+			error = "Maaf Isi Data Secara Lengkap"
+			return redirect(url_for('addUser'))
+	return redirect(url_for('addUser'))
+
+
 @app.route('/respon_delete', methods=['GET','POST'])
 def respon_delete():
+	error = None
 	if request.method == 'POST':
 		if not request.form['prodi_in'] or not request.form['nim_in']:
 			error = "Masukkan Data dengan komplit dan sesuai!"
 		else:
-			sesi.execute(" DELETE FROM dokumen WHERE prodi = %s AND nim = %s ", (request.form['prodi_in'], (int(request.form['nim_in'])) ) )
+			sesi.execute(" DELETE FROM dokumen WHERE prodi = %s AND nim = %s ", (request.form['prodi_in'], (request.form['nim_in']) ) )
 			error = "Maaf Isi Data Secara Lengkap"
 			return redirect(url_for('data_doc'))
 	return redirect(url_for('data_doc'))
@@ -223,7 +293,7 @@ def login_app():
 		else:
 			if a.jabatan == request.form['jabatan'] and a.password == request.form['password']:
 				session['logged_biasa'] = True
-				return redirect(url_for('admin'))
+				return redirect(url_for('form_search'))
 			else:
 				error = "User atau Password Anda Salah, Ulangi Kembali !"
 	return render_template('login.html', error=error)
@@ -236,7 +306,7 @@ def login_mhs():
 	for a in q1:
 		if a.prodi == request.form['jurusan'] and a.password == request.form['password']:
 			session['logged_mhs'] = True
-			return redirect(url_for('admin', q1=q1))
+			return redirect(url_for('unggah_doc'))
 		else:
 			error = "User atau Password Anda Salah, Ulangi Kembali !"
 	return render_template('login.html', error=error)
@@ -244,4 +314,21 @@ def login_mhs():
 
 @app.route('/unggah_doc/')
 def unggah_doc():
-	return render_template('data_doc_mhs.html')
+	now = datetime.now()
+	now = now.strftime("%Y")
+	angkatan_date = reversed(range(int(now)-10, int(now)+1))
+	tahun_date = reversed(range(int(now)-10, int(now)+1))
+	return render_template('data_doc_mhs.html', date1=angkatan_date, date2=tahun_date)
+
+@app.route('/lihat', methods=['GET', 'POST'])
+def lihat():
+	if request.method == 'POST':
+		if request.form['nim'] == "":
+			error = "Masukkan Data dengan komplit dan sesuai!"
+			return redirect(url_for('unggah_doc'))
+		else:
+			detil = sesi.execute(" SELECT * FROM dokumen WHERE prodi = %s AND nim = %s ", (request.form['jurusan'], request.form['nim'] ) )
+			error = "Maaf Isi Data Secara Lengkap"
+			return render_template("document.html", detil=detil)
+	return redirect(url_for('unggah_doc'))
+	

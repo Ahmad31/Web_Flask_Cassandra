@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <main>
+	<a href="{{ url_for('form_search') }}"> <button type="submit" class="btn btn-primary">Kembali</button>
+	</a>
 	<br>
    	<br>
 	{% for doc in detil %}
@@ -44,12 +46,12 @@
 		        	<a href="">{{ doc.file5 }}</br></a>
 		        </td>
 		      </tr>
-
 		    </tbody>
 		  </table>
 		</div>
 		</div>
 	</h4>
+
    	{% endfor %}
 </main>
 {% endblock %}
