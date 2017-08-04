@@ -315,3 +315,84 @@
     </div>
 
     <a href="{{ url_for('respon_delet', nim) }}">
+
+
+
+
+
+    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title panel-title-adjust">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <i class="fa fa-plus"></i>Login Admin
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                 <form action="{{ url_for('login_admin') }}" method="POST">
+                                      <div class="input-group">
+                                        <span class="input-group-addon">Username</span>
+                                        <input id="msg" type="text" class="form-control" name="username" placeholder="Masukan Username Anda">
+                                      </div>
+                                      <br>
+                                      <div class="input-group">
+                                        <span class="input-group-addon">Password</span>
+                                        <input id="msg" type="password" class="form-control" name="password" placeholder="Masukan Password Anda">
+                                      </div>
+                                      <br>
+                                      <button type="submit" class="btn btn-default">Login</button>
+                                    </form>   
+                            </div>
+                        </div>
+                    </div>
+
+{% extends "base.html" %}
+
+{% block content %}
+<div >
+  <ul class="nav nav-tabs">
+      <li class="active"><a href="#">Buat akun baru</a></li>
+  </ul>
+  <br>
+  <p>Buat akun baru, untuk melakukan unggah dokumen.<br>
+  Pembuatan akun akan menambah username dan password untuk masuk kedalam sistem</p>
+  <hr>
+
+  <div class="col-md-6">
+  <div class="panel panel-primary">
+      <div class="panel-body">
+        <form action="{{ request.path }}" method="post">
+        <div class="form-group">
+            <label for="usr">NIM:</label>
+            <input name ="nim" type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="usr">Nama:</label>
+            <input name ="nama_mhs" type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input name ="password"  type="password" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-default">Simpan</button>
+      </form> 
+      </div>
+  </div>
+
+  
+  </div>
+  {% include "daftar_akun.html" %}
+
+  <br>  
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-58126461-1', 'auto');
+  ga('send', 'pageview');
+</script>
+{% endblock %}

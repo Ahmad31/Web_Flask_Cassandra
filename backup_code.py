@@ -34,6 +34,20 @@ def logout():
 	return redirect(url_for('index'))
 
 
+@app.route('/login_app', methods=['POST'])
+def login_app():
+	error = None
+
+	if 'logged_in' is session:
+		return redirect(url_for('login'))
+	if request.method == 'POST':
+		result = sesi.execute("SELECT COUNT(1) FROM user_app WHERE nip= %s AND jabatan= %s AND password = %s ALLOW FILTERING ;", ((int(request.form['nip'])), request.form['jabatan'], request.form['password'] ))
+		if result.fetch()[0]:
+				session['logged_in'] = True
+				return redirect(url_for('admin'))
+		else:
+			error = "Ulangi !!!"
+	return render_template('login.html', error=error)
 
 
 	form = LoginForm()
@@ -67,38 +81,6 @@ def do_admin_login():
         flash('wrong password!')
     return home()
 
-
-
-    {% if session['logged_in'] %}
-<p>You're logged in already!'</p>
-{% else %}
-<hr>
-    <div class="row">   
-            <div class="col-md-6 col-md-offset-3">
-                <form action="/login" method="POST">
-                    
-                   
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon3">
-                       
-                        Username</span>
-                        <input class="form-control" type="username" name="username" placeholder="Username" id="user" aria-describedby="basic-addon3">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon3">
-                       
-                        Password</span>
-                        <input  class="form-control" id="pass"  aria-describedby="basic-addon3" type="password" name="password" placeholder="Password">
-                    </div>
-                    <br>
-                    <input type="Submit" value="Login" class="btn btn-default btn-sm">
-                </form>
-            </div>
-        </div>
-        <hr>
-
-{% endif %}
 
 
 if not session.get('logged_in'):
@@ -220,3 +202,24 @@ delet = DELETE FROM dokumen WHERE prodi ="Teknik Informatika" AND nim=14231112;
 @app.route('/respon_delet', methods=['GET','POST'])
 def respon_delet():
 	return render_template("data_doc.html", delet=delet) 
+
+
+if 'logged_in' is session:
+		return redirect(url_for('login'))
+
+	if request.method == 'POST':
+		result = sesi.execute("SELECT COUNT(1) FROM user_app WHERE nip= %s AND jabatan= %s AND password = %s ALLOW FILTERING ;", ((int(request.form['nip'])), request.form['jabatan'], request.form['password'] ))
+		if result == 1:
+			session['logged_in'] = True
+			return redirect(url_for('admin'))
+		else:
+			error = "Ulangi !!!"
+	return render_template('login.html', error=error)
+
+
+	data_nip = sesi.execute(" SELECT nip FROM user_app WHERE jabatan = %s AND nip = %s ;", (request.form['jabatan'], (int(request.form['nip']))))
+	data = sesi.execute_async("SELECT COUNT(1) FROM user_app WHERE nip= %s AND jabatan= %s AND password = %s ALLOW FILTERING ;", ((int(request.form['nip'])), request.form['jabatan'], request.form['password'] ))
+	rows = data.result()
+	nip_form = request.form['nip']
+	jabatan_form = request.form['jabatan']
+	password_form = request.form['password']

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% if session['logged_in'] %}
 <main>
   
   <input id="tab1" type="radio" name="tabs" checked>
@@ -31,7 +32,7 @@
             <h4>Data Skripsi Teknik Informatika</h4>
             {% for doc in data_ti %}
             <div class="table-responsive">
-
+              
                     
                   <table id="mytable" class="table table-bordred table-striped">
                        
@@ -270,5 +271,5 @@
 
 </main>
 
-
+{% endif%}
 {% endblock %}

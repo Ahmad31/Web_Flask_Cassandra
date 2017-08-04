@@ -1,4 +1,4 @@
-Menu input dokumen skripsi/tugas akhir
+Unggah dokumen skripsi/tugas akhir
 	<hr>
 {% if session['logged_mhs'] %}
 <div class="row">
@@ -6,24 +6,13 @@ Menu input dokumen skripsi/tugas akhir
 	<div class="panel panel-primary">
   		<div class="panel-body">
 	  		
-			<form action="{{ url_for('respon_edit') }}" method="post">
+			<form action="{{ url_for('respon_unggah') }}" method="post">
 			<div class="col-md-5 col-sm-5 col-xs-12">
 				<div class="form-group">
 			  		<p>Nim:</p>
-			  		<input name ="nim" type="text" class="form-control" id="usr">
+			  		<input name ="nim_mhs" type="text" class="form-control" id="usr">
 				</div>
-				<div class="form-group">
-			  		<p>Nama:</p>
-			  		<input name ="nama"  type="text" class="form-control" id="pwd">
-				</div>
-				<div class="form-group">
-			  		<p>Angkaran : </p>
-			  		<input name ="angkatan"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2011 )">
-				</div>
-				<div class="form-group">
-			  		<p>Tahun Lulus: </p>
-			  		<input name ="Tlulus"  type="text" class="form-control" id="pwd" placeholder="format: yyyy (contoh : 2013 )">
-				</div>
+				
 				<div class="form-group">
 			  		<p>Jurusan</p>
 			  		<select name="jurusan" class="form-control" id="sel1">
@@ -35,15 +24,26 @@ Menu input dokumen skripsi/tugas akhir
 			  		</select>
 				</div>
 
-				
 				<div class="form-group">
-			  		<p>Judul Sekripsi:</p>
-			  		<input name ="judul"  type="text" class="form-control" id="pwd">
-				</div>
+			            <p>Angkaran : </p>
+			            <select name="angkatan_mhs" class="form-control">
+			                    {% for date in date1 %}
+			                    <option >{{ date }}</option>
+			                     {% endfor %}
+			              </select>
+			        </div>
+			        <div class="form-group">
+			            <p>Tahun Lulus: </p>
+			            <select name="tlulus_mhs" class="form-control" >
+			                    {% for tahun in date2 %}
+			                    <option >{{ tahun }}</option>
+			                     {% endfor %}
+			          </select>
+			    </div>
 
 				<div class="form-group">
 			  		<p>Kata Kunci:</p>
-			  		<input name ="kunci"  type="text" class="form-control" id="pwd">
+			  		<input name ="kunci_kata"  type="text" class="form-control" id="pwd">
 				</div>
 
 				</div>
@@ -51,15 +51,11 @@ Menu input dokumen skripsi/tugas akhir
 
 				<div class="form-group">
 			  		<p>Intisari:</p>
-			  		<textarea name ="Isari"  class="form-control" rows="5" id="comment"></textarea>
+			  		<textarea name ="intisari_doc"  class="form-control" rows="5" id="comment"></textarea>
 				</div>
 				<div class="form-group">
 			  		<p>Pembimbing:</p>
-			  		<input name ="PBimbing"  type="text" class="form-control" id="pwd">
-				</div>
-				<div class="form-group">
-			  		<p>Password:</p>
-			  		<input name ="pas"  type="text" class="form-control" id="pwd">
+			  		<input name ="pembimbing_mhs"  type="text" class="form-control" id="pwd">
 				</div>
 				<div class="form-group">
 			  		<p>Upload File:</p><br>

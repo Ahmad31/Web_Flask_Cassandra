@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="panel panel-primary">
+  <div class="panel-heading">Ubah Data</div>
+      <div class="panel-body">
+
+        <form action="{{ url_for('respon_edit_pet') }}" method="post">
+        <div class="form-group">
+        {% for data in view_user %}
+            <p>Jabatan</p>
+            <select name="jabatan" class="form-control" id="sel1">
+              <option >{{ data.jabatan }}</option>             
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="usr">NIP:</label>
+            <select name="nip" class="form-control" id="sel1">
+              <option >{{ data.nip }}</option>             
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="usr">Nama:</label>
+            <input name ="username" value="{{ data.username }}" type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input name ="password"  type="password" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-default">Simpan</button>
+        <a href="{{ url_for('addUser') }}"> Kembali </a>
+        {% endfor %}
+      </form> 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</main>             
+{% endblock %}
