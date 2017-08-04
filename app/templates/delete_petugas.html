@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<main> 
+	<form action="{{ url_for('respon_delete_user_pet', jabatan='{{ jabatan }}', nip='{{ nip }}') }}" method="post">
+	<div class="panel panel-danger">
+      <div class="panel-heading">Peringatan | Apakah Anda Yakin Akan Menghapus !  </div>
+      <div class="panel-body"></div>
+
+      <div class="form-group">
+            Jabatan :
+            <select name="jabatan_in" class="form-control" id="sel1">
+              <option >{{ jabatan }}</option>
+            </select>
+      </div>
+
+      <div class="form-group">
+            Nip :
+            <select name="nip_in" class="form-control" id="sel1">
+              <option >{{ nip }}</option>
+            </select>
+      </div>
+
+      <hr>
+      <button type="submit" class="btn btn-info"> Hapus </button>
+      </form>
+      <a href="{{ url_for('addUser') }}"> Kembali </a> 
+    </div>
+  	
+  	
+</main>
+{% endblock %}

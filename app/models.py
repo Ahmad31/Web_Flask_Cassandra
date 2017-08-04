@@ -6,7 +6,7 @@ from werkzeug import generate_password_hash, check_password_hash
 class Dokumen(db.Model):
     __table_name__ = 'dokumen'
 
-    nim = db.columns.Integer(primary_key=True)
+    nim = db.columns.Text(primary_key=True)
     prodi = db.columns.Text(primary_key=True)
     tahun = db.columns.Integer()
     judul = db.columns.Text()

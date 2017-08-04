@@ -1,4 +1,3 @@
-
 import uuid
 import os
 from flask_login import LoginManager

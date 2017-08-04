@@ -16,11 +16,26 @@
   <section id="content2">
   
     <div class="row">
-            <div class="col-md-12">
-            <h4>Data Skripsi Teknik Informatika</h4>
-        
-   
+      <form action="{{ url_for('lihat') }}" method="post">
+            <div class="col-md-4">
+            <h4>Isi nim dan jurusan untuk melihat</h4>
+            <hr>
+            <div> <b>Nim</b> : <input name ="nim"  type="text" class="form-control" id="pwd"> </div>
+            <br>
+            <div>
+            <b>Jurusan :</b>
+            <select name="jurusan" class="form-control" id="sel1">
+              <option >Teknik Informatika</option>
+              <option >Sistem Informasi</option>
+              <option >Teknik Komputer</option>
+              <option >Management Informasi</option>
+              <option >Komputer Akutansi</option>
+            </select>
+        </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Lihat</button>
             </div>
+      </form>
     </div>
 
 
@@ -30,5 +45,5 @@
 
 </main>
 
-
 {% endblock %}
+
