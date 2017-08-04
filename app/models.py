@@ -25,7 +25,6 @@ class Dokumen(db.Model):
     def __repr__(self):
         return '<Dokumen %r>' % (self.nim, self.nama_mhs, self.angkatan, self.tahun, self.prodi, self.judul, self.kata_kunci, self.intisari, self.pembimbing, self.password, self.file1, self.file2, self.file3, self.file4, self.file5)
 
-
 class User_app(db.Model):
     __table_name__ = "user_app"
     jabatan = db.columns.Text(primary_key=True)

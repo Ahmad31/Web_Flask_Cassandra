@@ -92,12 +92,12 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
 - Buat tabel
 
         CREATE TABLE dokumen (
-        nim int,
+        nim varchar,
         prodi text,
-        tahun date,
+        tahun int,
         judul text,
         kata_kunci text,
-        angkatan date,
+        angkatan int,
         file1 text,
         file2 text,
         file3 text,
@@ -128,10 +128,7 @@ perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bis
     
     cqlsh:project> use project
 
-    cqlsh:project> INSERT INTO doc1 (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410091, 'Teknik Informatika', 2017, 'Arsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster ', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', '2013-01-01', 'rsip Dokumen dengan Cassandra implementasi Multi Node Single Cluster', 'Ahmad Anwar', 'Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
-    
-    
-    INSERT INTO dokumen(nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410121, 'Sistem Informasi', 2017, 'Big data untuk penjualan ', 'Big data', 2013, 'big data', 'Heru', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
+    cqlsh:project> INSERT INTO dokumen(nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410121, 'Sistem Informasi', 2017, 'Big data untuk penjualan ', 'Big data', 2013, 'big data', 'Heru', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
 
     INSERT INTO dokumen (nim , prodi , tahun , judul , kata_kunci , angkatan , intisari , nama_mhs , pembimbing , password , file1, file2, file3, file4, file5 ) VALUES ( 135410100, 'Teknik Informatika', 2017, 'Coba pemodelan data 1', 'Coba pemodelan data 1',2013, 'Coba pemodelan data 1', 'Ibnu Masud', 'Dr.Bambang PDP', 'aku', 'data', 'data', 'data', 'data', 'data');
     
