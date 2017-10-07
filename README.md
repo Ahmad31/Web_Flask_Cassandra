@@ -119,6 +119,11 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
     username text,
     PRIMARY KEY (jabatan, nip))
     
+# Membuat user baru
+    cqlsh:project> use project
+
+    cqlsh:project> INSERT INTO user_app(jabatan, nip, password, username) VALUES ('Petugas', 1001, 'admin', 'admin');
+    
 
 ## *Catatan
 perintah pembuatan table hanya dilakukan satu kali saja pada server virtual, bisa dibuat disembarang server virtual bisa di node1, node2 atau node3.
