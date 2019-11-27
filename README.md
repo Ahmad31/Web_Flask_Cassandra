@@ -55,7 +55,7 @@ Ada 3 Container yang dibuat dari images Ubuntu.15.04
              root# service cassandra status
                * Cassandra is running
                
-             root# nodetoatus
+             root# nodetool status
              =======================
              Status=Up/Down
              |/ State=Normal/Leaving/Joining/Moving
